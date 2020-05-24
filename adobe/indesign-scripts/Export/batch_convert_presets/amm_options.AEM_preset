@@ -1,0 +1,8 @@
+﻿assetformat: pdf
+width: 768
+height: 1024
+showprogressbar: true
+resolutionforpdfimages: 108
+resolutionforpdfoverlayimages: 108
+spreads: all
+smoothscrolling: none

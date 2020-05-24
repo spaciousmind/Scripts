@@ -1,0 +1,54 @@
+﻿
+PDF Unspread
+
+JavaScript for Adobe InDesign
+Latest update 1/2/2020, version 1.0
+
+The script places a PDF in reader spreads or printer spreads into an InDesign document and splits the spreads apart, back to single pages. After processing, the user may save the document and/or export a new PDF, which is then ready for prepress workflow imposition. This script is based on the InDesign script PDF Place and Export, reduced to a simpler script specific to the one feature of converting spreads back to single pages.
+
+    Creates an InDesign document sized to match input PDF
+    Option to include bleed
+    Convert a PDF in printer spreads back to single pages
+    Convert a PDF in reader spreads back to single pages
+    User-configurable localization
+
+Instructions for use
+
+The interface has two sections: Input file and Layout. Enable desired options and click the OK button to begin. An existing InDesign document is not required beforehand. The script reads the trim box of the PDF and creates a new document based on the page size discovered. If the PDF lacks a trim box, the script presents a warning and attempts to read the crop box or media box instead, if the user chooses to continue.
+
+The script places the PDF spreads in the document and then rearranges the pages to “unspread” the pages back to their natural order.
+
+Section 1: Input file
+
+File — select a PDF file to process. The path and name of the selected file appears to the right of the button.
+
+Printer spreads — assumes the first page of the input PDF is a spread of the last and first pages (back and front cover), and that pages to follow are arranged as printer spreads, increasing low folio pages paired with decreasing high folio pages, until reaching the center at the PDF’s last page. The page size of the document is set to half the width of the spread discovered at page one of the input PDF.
+
+Reader spreads — assumes the first page of the input PDF is a single page (cover) that determines the page size of the document, and that pages to follow are spreads in ascending order. The script tests this assumption by comparing the width of the first and second page of the input PDF. If the sizes match, there is not a single-page cover, and the script acts accordingly. A final single page (back cover) is typical but not required. The PDF is processed correctly in either case.
+
+Important: If PDFs to process do not conform to the above assumptions, the final result will not be as expected. Ensure that input PDFs match the assumption for the choice selected, including a bleed box defined when Include bleed is enabled, another assumption of the script. Use other PDF tools to prepare PDFs for processing as needed to satisfy these assumptions.
+
+Section 2: Layout
+
+Include bleed — when placing PDF pages, the bleed box is read, the document bleed is set to match, and pages placed include bleed. If a PDF page lacks a bleed box, the script presents a warning and processing halts. For PDFs with bleed, and the option Include bleed is enabled, the overlapping bleeds in the spine are resolved.
+
+Important: bleed is determined by comparing bleed box height against trim box height and calculating a value based on the difference. The script has no means to understand if a PDF page has unequal bleed margins, and so assumes the PDF to process has equal bleed margins. Use other PDF tools to prepare the input PDF for processing as needed to satisfy this assumption.
+
+Limit bleed to — available when the option Include bleed is enabled, this option allows the user to define a maximum bleed value. If the bleed value of placed PDF pages exceeds the defined value, they are cropped to limit bleed. As well, the document bleed is set no greater than this value.
+
+Facing pages — creates a document with facing pages enabled.
+
+Localization
+
+The script provides user-configurable localization. By default the script language is US English, which does not require further download or configuration. For other languages, download https://www.marspremedia.com/software/download?asset=pdf-printer-spreads-i18n and copy the i18n file for the desired language to the script folder alongside the script file. When launched, the script detects the i18n file and the interface displays the language. If the desired language is not present in the language pack, edit the English i18n file to translate to the desired language, and copy the edited i18n file to the script folder alongside the script file. For details of how to edit and install i18n files, read https://www.marspremedia.com/software/how-to-localize
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com
+
+CHANGE LOG
+
+Version 1.0 (200102)
+    Initial release, based on PDF Place and Export version 2.3.

@@ -1,0 +1,1 @@
+﻿myTable = app.selection[0].tables[0];myRows = 5; for (var i = 0; i <= myRows - 1; i++){    if (i==0){        myTable.rows[i].select();    }else{        myTable.rows[i].select(SelectionOptions.ADD_TO);    }}

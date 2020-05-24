@@ -1,0 +1,1 @@
+﻿app.activeDocument.stories.everyItem().tables.everyItem().convertToText("\t", "\r");

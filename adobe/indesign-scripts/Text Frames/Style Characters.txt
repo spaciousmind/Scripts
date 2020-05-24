@@ -1,0 +1,45 @@
+﻿Style Characters
+
+JavaScript for Adobe InDesign
+Latest update 5/11/2020, version 1.0
+
+The script searches the open document (or selected story) for characters set to bold, italic, and other text decorations, and applies a selected character style, done in one operation rather than repeated visits to the Find/Change dialog. The script was created to prepare content imported from word processing applications where text is manually set to bold, italic, etc. If not assigned a character style, manual styling of text can be lost once applying a paragraph style and/or clearing overrides.
+
+    Find common font styling and apply character style
+    Creates character styles if needed
+    User-configurable localization
+
+Instructions for use
+
+The interface has two sections: Search and Styles. Set options as desired and click OK to begin. There is no user interaction while processing. The script searches for text set to each style to find, and for all instances found, the character style in the corresponding drop-down list is applied. Once complete, the user is notified.
+
+Before launching the script, it is best to add to the document and configure desired character styles, but this is not required. Any character style the script attempts to apply, if absent from the document, is created during processing. Afterwards, any style created by the script may be further configured as desired. For example, set font style to “Semibold” rather than “Bold”, or “Oblique” instead of “Italic”, if needed to match the family of the font ultimately applied to the entire text.
+
+Section 1: Search
+
+Document — searches all stories of the document that is currently open and the top-most window if multiple documents are open.
+
+Story — searches only the selected story. If no story is selected, the choice is disabled. The user may also choose Document to increase the scope of text searched.
+
+Section 2: Style
+
+Each checkbox is a style to find followed by a drop-down list from which to choose the character style to apply. Styles to find that are unchecked are ignored and any text set to the font style remains unaffected.
+
+Settings
+
+Each time processing begins, the selected options are preserved, and the next time the script is launched, the options are restored to the last values used. Note however that any character style not one of the defaults (Bold, Italic, etc.) and that doesn’t exist in the current document, may revert to default.
+
+Localization
+
+The script provides user-configurable localization. By default the script language is US English, which does not require further download or configuration. For other languages, download https://www.marspremedia.com/software/download?asset=pdf-export-single-pages-i18n and copy the i18n file for the desired language to the script folder alongside the script file. When launched, the script detects the i18n file and the interface displays the language. If the desired language is not present in the language pack, edit the English i18n file to translate to the desired language, and copy the edited i18n file to the script folder alongside the script file. For details of how to edit and install i18n files, read https://www.marspremedia.com/software/how-to-localize
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com
+
+CHANGE LOG
+
+Version 1.0 (200511)
+    Initial release.

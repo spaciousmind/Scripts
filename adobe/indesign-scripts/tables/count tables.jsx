@@ -1,0 +1,1 @@
+﻿function countTables()  {      app.findTextPreferences = null;      app.findTextPreferences.findWhat = "\x16";      var t = app.properties.activeDocument||0;      return t&&t.findText().length;  };   alert( countTables() ); 

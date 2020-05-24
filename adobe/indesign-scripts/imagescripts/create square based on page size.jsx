@@ -1,0 +1,1 @@
+﻿var pg = app.layoutWindows[0].activePage,      bs = pg.bounds,      w = (bs[3]-bs[1]),      // page width      h = (bs[2]-bs[0])/2,    // half of the page height      x = (w*h)/(w+h);   bs[0]=bs[2]-x;  bs[1]=bs[3]-x;  pg.rectangles.add({fillColor:'Black',geometricBounds:bs});

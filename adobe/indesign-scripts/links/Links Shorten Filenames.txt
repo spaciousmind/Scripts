@@ -1,0 +1,33 @@
+﻿
+Links Shorten Filenames
+
+JavaScript for Adobe InDesign
+
+More than once I’ve encountered projects using image filenames as a means to convey caption text. This practice leads to some incredibly long filenames. A recent project had filenames so long that once down a few subfolders, the path length exceeded the maximum my Windows server could handle. It was a mess to clean up, which became the reason to create this script.
+
+Or a project’s filenames are long for some other reason. Whether intended as caption text or not, excessively long filenames can be a pain, for the file system, applications, and operators trying to identify one file from another. This script truncates actual filenames (as each appears in Finder or File Explorer) to a reasonable length specified by the user, then update the links in the InDesign layout to the new filenames, all in one operation. As can be imagined, accomplishing this manually, link-by-link, would be time-consuming and error-prone.
+
+In the case of caption text in filenames, see the Photoshop script Filename to Description, https://www.marspremedia.com/software/photoshop/filename-to-description. Before shortening filenames with this script, use the related Photoshop script to copy filenames to each file’s metadata, and preserve the caption text before it is truncated.
+
+Also consider the related script Links Remove Number Prefix, https://www.marspremedia.com/software/indesign/links-remove-number-prefix. For files labeled with numbered prefixes (i.e. chapter numbers or image order), it may be desirable to strip this excess first, then further shorten the filenames.
+
+    Truncate filenames to specified maximum and update links
+    Auto-resolves duplicate filenames
+    Open source
+    Adapt source code to create other scripts
+
+Instructions for use
+
+The user is prompted to enter the maximum length for filenames. This does not include the extension, which remains the same. All links are examined and any filenames that exceed the specified value are truncated, then the new name is tested to ensure a file of the same name does not already exist. If a file does exist, the name is further shortened to allow for a version number appended to the name as a suffix, for example "~2" prior to the file extension. Finally, for any filenames that are modified, the placed graphic is then relinked to the new filename.
+
+The script is open source so it may be altered to suit other needs.
+
+Localization
+
+The script is open source. Users may alter the code to localize the language as desired.
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com

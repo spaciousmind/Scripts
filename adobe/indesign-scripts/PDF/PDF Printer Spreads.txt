@@ -1,0 +1,55 @@
+﻿
+PDF Printer Spreads
+
+JavaScript for Adobe InDesign
+Latest update 1/2/2020, version 1.0.1
+
+The script places PDF pages into an InDesign document and arranges the pages as printer spreads. After processing, the user may save the document and/or export a new PDF. This script is based on the InDesign script PDF Place and Export, reduced to a simpler script specific to the one feature of creating printer spreads.
+
+    Creates an InDesign document sized to match input PDF
+    Option to include bleed
+    Resolves overlapping bleeds in the spine
+    Create printer spreads
+    User-configurable localization
+
+PDF Printer Spreads screen
+
+You decide. Reward the author an
+amount the solution is worth to you.
+Instructions for use
+
+The interface has two sections: Input file and Layout. Enable desired options and click the OK button to begin. An existing InDesign document is not required beforehand. The script reads the trim box of the PDF and creates a new document based on the page size discovered. If the PDF lacks a trim box, the script presents a warning and attempts to read the crop box or media box instead, if the user chooses to continue.
+
+Once all pages of the input PDF are placed in natural order, the script then arranges the pages in the order required for a saddle-stitch booklet constructed of 4-page signatures, commonly referred to as printer spreads. This requires the page count be divisible by 4. If not, the user is prompted with an option to add blank pages to the end of the document. When processing is complete, the document is half the number of single pages that are double the width of the trim size, with two PDF pages placed side-by-side as a spread across each document page.
+
+Section 1: Input file
+
+File — select a PDF file to process. The path and name of the selected file appears to the right of the button.
+
+Section 2: Layout
+
+Include bleed — when placing PDF pages, the bleed box is read, the document bleed is set to match, and pages placed include bleed. If a PDF page lacks a bleed box, the script presents a warning and processing halts. For PDFs with bleed, and the option Include bleed is enabled, the overlapping bleeds in the spine are resolved.
+
+Important: bleed is determined by comparing bleed box height against trim box height and calculating a value based on the difference. The script has no means to understand if a PDF page has unequal bleed margins, and so assumes the PDF to process has equal bleed margins. Use other PDF tools to prepare the input PDF for processing as needed to satisfy this assumption.
+
+Limit bleed to — available when the option Include bleed is enabled, this option allows the user to define a maximum bleed value. If the bleed value of placed PDF pages exceeds the defined value, they are cropped to limit bleed. As well, the document bleed is set no greater than this value.
+
+Rotate — after pages are arranged as printer spreads, odd spreads are rotated clockwise and even spreads are rotated counter-clockwise, orienting the spreads for production on a duplicator or other device that grips the short edge rather than long edge of the sheet.
+
+Localization
+
+The script provides user-configurable localization. By default the script language is US English, which does not require further download or configuration. For other languages, download https://www.marspremedia.com/software/download?asset=pdf-printer-spreads-i18n and copy the i18n file for the desired language to the script folder alongside the script file. When launched, the script detects the i18n file and the interface displays the language. If the desired language is not present in the language pack, edit the English i18n file to translate to the desired language, and copy the edited i18n file to the script folder alongside the script file. For details of how to edit and install i18n files, read https://www.marspremedia.com/software/how-to-localize
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com
+
+CHANGE LOG
+
+Version 1.0.1 (200102)
+    Miscellaneous.
+
+Version 1.0 (191230)
+    Initial release, based on PDF Place and Export version 2.3.

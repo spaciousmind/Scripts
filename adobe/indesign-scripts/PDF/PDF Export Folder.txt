@@ -1,0 +1,45 @@
+
+PDF Export Folder
+
+JavaScript for Adobe InDesign
+
+The purpose of the script is twofold:
+
+1. Export a folder of InDesign documents to PDF as simply as possible. Other scripts perform the same and more, and with more options. Users are encouraged to use those scripts when further capability is needed. The point of this script was to accomplish one specific task without excess.
+
+2. Act as a template to create other scripts that process InDesign documents, whatever the process might be. The script can perform other tasks by altering the processFile() function, called for each InDesign document found in the selected folder. Also further options are easily added to the interface.
+
+    Option to include subfolders
+    Export using any defined PDF Preset
+    Option to add suffix to output file names
+    Option to replace existing output files.
+    Open source
+    Adapt source code to create other scripts
+
+Instructions for use
+
+The interface has two sections: Process and Options. Set desired options then click the OK button to begin. A progress bar is displayed as documents are processed.
+
+Section 1: Process
+
+Folder — select a folder that contains InDesign documents. Each will be exported to a PDF in the same folder. Only files with the .indd extension are processed.
+
+Include subfolders — if enabled, documents in all subfolders are also processed.
+
+Section 2: Options
+
+PDF preset — the PDF preset used to export the InDesign files.
+
+Original name + — an optional suffix of characters appended to output file names, prior to the file extension. The characters chosen must be legal to use in file names.
+
+Replace existing output files — when enabled, existing output files are replaced without user intervention. When disabled, the user is prompted to confirm the replacement of each existing output file.
+
+Localization
+
+The script is open source. Users may alter the code to localize the language as desired.
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com

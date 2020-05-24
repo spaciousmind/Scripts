@@ -1,0 +1,26 @@
+﻿
+Links Rename Selected
+
+JavaScript for Adobe InDesign
+
+Rename and update selected link.
+
+    Ensures the new name does not already exist
+    Open source
+    Adapt source code to create other scripts
+
+Instructions for use
+
+Select an image or its frame then launch the script. If an image or its frame is not the current selection, the user is prompted to select an image or its frame. Once launched, the script displays an input prompt that defaults to the current filename. Revise the name as desired and click OK. The name does not include the file extension, which remains the same. If the revised name matches another link that already exists, the user is notified and the file is not renamed. Otherwise the file is renamed and the placed graphic is relinked to the new filename provided.
+
+The script is open source so it may be altered to suit other needs.
+
+Localization
+
+The script is open source. Users may alter the code to localize the language as desired.
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com

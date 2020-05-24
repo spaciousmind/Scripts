@@ -1,0 +1,26 @@
+﻿
+Links Rename Web or Ebook
+
+JavaScript for Adobe InDesign
+
+    Rename links and update
+    Open source
+    Adapt source code to create other scripts
+
+Instructions for use
+
+The script has no interface other than alert on launch to warn that files on disk will be altered, and alert when complete.
+
+All links in the active InDesign document are renamed to eliminate spaces and punctuation that would require URL encoding. This prevents URLs that look like ".../This%20is%20the%20File%20Name.jpg". Instead such a link becomes ".../this-is-the-file-name.jpg".
+
+The script is open source so it may be altered to suit other needs. For example, if lowercase is not desired, remove the change to lowercase. Other file name transformations can be added or removed, including to replace specific characters for a unique situation.
+
+Localization
+
+The script is open source. Users may alter the code to localize the language as desired.
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com

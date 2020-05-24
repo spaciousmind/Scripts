@@ -1,0 +1,1 @@
+﻿var myDoc = app.documents[0];   myDoc.stories.everyItem().tables.everyItem().    cells.everyItem().texts.everyItem().  //appliedLanguage="English: UK";  appliedParagraphStyle = "subheading white"; 

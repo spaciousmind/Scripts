@@ -1,0 +1,51 @@
+C0 controls and basic Latin   (0x0000-0x007F) /Latin
+C1 controls and Latin-1 supplement   (0x0080-0x00FF) /Latin-1
+Latin extended A   (0x0100-0x017F) /Latin-A
+Latin extended B   (0x0180-0x024F) /Latin-B
+Latin extended C   (0x2C60-0x2C7F) /Latin-C
+Latin extended D   (0xA720-0xA78C) /Latin-D
+Latin extended E   (0xA7FB-0xA7FF) /Latin-D
+Latin extended additional   (0x1E00-0x1EFF) /Latin add.
+Combining diacritical marks   (0x0300-0x036F) /Comb dia
+Combining diacritical marks supplement   (0x1DC0-0x1DFF) /Comb d/supp
+Combining diacritical marks for symbols   (0x20D0-0x20FF) /Comb d/sym
+Combining half marks   (0xFE20-0xFE2F) /Comb half
+IPA extensions   (0x0250-0x02AF) /IPA
+Phonetic extensions + supplement   (0x1D00-0x1DBF) /IPA ext
+Modifier tone letters   (0xA700-0xA71F) /Tone
+Spacing modifier letters   (0x02B0-0x02FF) /Spacing mod
+General punctuation   (0x2000-0x206F) /Punct
+Supplemental punctuation   (0x2E00-0x2E30) /Punct supp
+Vertical forms   (0xFE10-0xFE19) /Vert
+Small form variants   (0xFE50-0xFE6F) /Small
+Halfwidth and fullwidth punctuation   (0xFF00-0xFFFF) /Half-Full
+Number forms   (0x2150-0x218F) /Number
+Enclosed alphanumerics   (0x2460-0x24FF) /Encl
+Super- and subscripts   (0x2070-0x209F) /Sup-sub
+Letterlike symbols   (0x2100-0x214F) /L-like
+Alphabetic presentation forms   (0xFB00-0xFB4F) /Alph pres
+Arrows   (0x2190-0x21FF) /Arrows
+Arrows-supplemental A   (0x27F0-0x27FF) /Arr supp A
+Arrows-supplemental B   (0x2900-0x297F) /Arr supp B
+Misc. symbols and arrows   (0x2B00-0x2BFF) /Misc arr
+Mathematical operators   (0x2200-0x22FF) /Math
+Mathematical operators-supplement   (0x2A00-0x2AFF) /Math supp
+Misc. mathematical symbols A   (0x27C0-0x27EF) /Math A
+Misc. mathematical symbols B   (0x2980-0x29FF) /Math B
+Misc. technical   (0x2300-0x23FF) /Misc tech
+Mathematical Alphanumeric Symbols   (0x1D400-0x1D7FF) /Math alpha
+Currency symbols   (0x20A0-0x20CF) /Currency
+Hebrew   (0x0590-0x05C7) /Hebrew
+Hebrew   (0x05D0-0x05EA) /Hebrew
+Hebrew (gappy table)   (0x05F0-0x05F4) /Hebrew
+Arabic   (0x0600-0x06FF) /Arabic
+Arabic supplement   (0x0750-0x077F) /Arabic supp
+Arabic presentation forms A   (0xFB50-0xFC3F) /Arabic A
+Arabic presentation forms B   (0xFE70-0xFEFF) /Arabic B
+Greek and Coptic   (0x0370-0x03FF) /Greek
+Greek extended   (0x1F00-0x1FFF) /Greek ext
+Cyrillic-with supplement   (0x0400-0x052F) /Cyrillic
+Cyrillic extended A   (0x2DE0-0x2DFF)  /Cyr A
+Cyrillic extended A   (0xA640-0xA69F) /Cyr B
+Bengali (0x0980-0x09FF) /Bengali
+Gujarati (0x0A80-0x0AFF) /Gujarati

@@ -1,0 +1,1 @@
+({location:[706, 310], lastScript:"grep_mapper/grep_mapper.jsx", filter:"", applyFilterOnNextRun:false, filter_check:false, recentScripts:["grep_mapper/grep_mapper.jsx", "Pages/rotate_spreads.jsx", "Pages/cleanup pasteboard.jsx"]})

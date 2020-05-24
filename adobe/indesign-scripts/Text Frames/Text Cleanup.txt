@@ -1,0 +1,230 @@
+﻿
+Text Cleanup
+
+JavaScript for Adobe InDesign
+Latest update 12/20/2019, version 2.2
+
+The script repairs common flaws in text, done in one operation rather than repeated visits to the InDesign Find/Change dialog. The script was created to clean up imported text from word processing applications, content that is often loaded with unwanted formatting — excess spaces between words, multiple spaces used to align text, unwanted line breaks, and more.
+
+    Apply to entire document or selected story
+    Confirmation to proceed, undo, or skip each change
+    Change defined number of spaces to tab character
+    Remove spaces before or after tabs
+    Remove spaces and tabs at beginning of paragraphs
+    Reduce multiple spaces or tabs to one
+    If desired, keep two spaces between sentences
+    Change double hyphens to em or en dash
+    Fix flopped apostrophes
+    Fix foot and inch marks
+    Remove empty paragraphs
+    Remove zero-width characters
+    Remove forced line breaks
+    Remove column/frame/page breaks
+    Remove excess at end of paragraphs and stories
+    Save and restore all settings
+    User-configurable localization
+
+Instructions for use
+
+The interface is divided into five sections: Search, Spaces, Tabs, Other, and Settings. Enable desired options and click the OK button to begin. Each task (option selected) is performed in the order listed on screen with the exception of Remove forced line breaks and Remove excess at end of paragraphs and stories (if either is selected). These tasks are completed first as they may affect remaining options.
+
+The Scripts panel is closed to give a clear view of the layout, and the display is magnified to better show the changes to confirm. Also, Show Hidden Characters is enabled and the display mode is changed to Normal.
+
+The first match discovered is selected in the layout and a confirmation dialog appears on screen. A description of the proposed change is displayed above a series of buttons:
+
+Confirm — the selected text is changed and displayed. The button Confirm becomes OK and the former button OK becomes Undo. The remaining buttons other than Cancel are disabled. Click OK to continue as described below. Undo reverts the change and restores the prior confirmation dialog, where Skip may be chosen instead, if desired.
+
+OK — (for either confirmation dialog) the selected text is changed as indicated, and the next proposed change is selected.
+
+OK all — the selected text and all remaining matching instances are changed without further user intervention. This applies only to the current task (tasks defined as options selected). When processing of the next task begins, the confirmation dialog is again displayed. This repeats until all selected tasks are completed.
+
+Skip — the selected text is not changed, and the next proposed change is selected.
+
+Skip all — the selected text is not changed and all remaining matching instances are ignored. Processing resumes with the next task and again the confirmation dialog is displayed.
+
+Cancel — processing ceases without further changes. Any changes previously accepted remain. If desired, the Edit menu item Undo restores the document to its state prior to launching the script.
+
+The confirmation dialog appears centered on screen and near the top of the window. If the dialog obscures the layout, it may be moved to another location on screen, even to a secondary display. The dialog will maintain its new position until the next launch of the script.
+
+If any story has overset text, it is not possible to show the proposed change because it is hidden off-screen in the overset text. In this case, a warning is displayed and the user has the option to continue regardless, or decline and remedy the overset text before trying again, the recommended choice. Then each change is visible and can be confirmed.
+
+The original intent of the script was to correct text imported from an unreliable source such as a word processing application. When used on a completed document, know that most options will upset text flow and should be used with care.
+
+The user is notified when processing is complete, or if processing is canceled.
+
+Section 1: Search
+
+Document — changes apply to the entire document that is currently open and the top-most window if multiple documents are open.
+
+Story — changes apply to the selected story. If no story is selected, the choice is disabled. The user may also choose Document to increase the scope of text affected.
+
+Zoom — the percentage to which the display is magnified when processing begins. This allows the user a closer look at selected text to better judge if changes are acceptable.
+
+Section 2: Spaces
+
+Change all special to normal — special space characters are changed to normal space characters. Examples of special space characters are non-breaking, thin, en, and em spaces, among others.
+
+Change to tab — the user may define a minimum number of multiple spaces that when detected, the spaces detected and any additional consecutive spaces are changed to a single tab character.
+
+Only at beginning of paragraphs — Change to tab may be restricted to only instances of multiple spaces at the beginning of paragraphs.
+
+Remove before or after tab — space characters before or after tabs are removed.
+
+Remove at beginning of paragraphs — space characters at the beginning of paragraphs are removed. This also applies to table cells.
+
+Between words, change two or more to one — two or more consecutive space characters are reduced to a single space, unless the choice Keep two spaces between sentences is enabled. See below for more details.
+
+Include special space characters — special space characters are also reduced to a single space, such as non-breaking, en, or em space, etc.
+
+Keep two spaces between sentences — instances of two spaces are preserved, but only when the instance directly follows a period, signaling the end of a sentence. This option will not add spaces between sentences, only keep them if they already exist.
+
+Section 3: Tabs
+
+Remove at beginning of paragraphs — tab characters at the beginning of paragraphs are removed. This also applies to table cells.
+
+Change two or more to one — two or more consecutive tab characters are reduced to a single tab.
+
+Section 4: Other
+
+Change double hyphens to em dash or en dash — instances of two hyphens are changed to a single em dash or en dash, as chosen by the user.
+
+Fix flopped apostrophes — InDesign and word processing programs feature auto-correct that converts single and double quotation marks to “typographer’s quotes.” In most cases this is helpful, but in the rare case a word begins with an apostrophe, this auto-correct feature errantly changes the apostrophe to an opening (left) single quotation mark. For example, go get ’em or summer of ’88 are changed to an opening single quotation mark, the mirror image of an apostrophe (in other words, flopped). This option detects such cases and lets the user change to the correct closing (right) mark, which doubles as an apostrophe.
+
+Fix foot and inch marks — like flopped apostrophes, InDesign and word processing programs errantly change foot and inch marks to typographer’s quotes. This option detects single or double quotation marks that follow a digit or fraction glyph, and provides changing these to a single or double straight quotation mark, the proper symbol for feet or inches.
+
+Remove empty paragraphs — empty paragraphs are removed.
+
+Remove zero-width characters — removes various marker characters, such as index, joiner/non-joiner, and others evident only when Show Hidden Characters is enabled. For text imported from a word processing program, these usually have a different meaning and once brought into InDesign, they are excess. However, for completed documents, these marks are likely intended and should remain. Use with care.
+
+Remove forced line breaks — forced line breaks are removed. The script determines if a space character or a hyphen precedes or follows each line break, and for instances where both are absent, the line break is changed to a space to prevent words from crashing together.
+
+Remove column/frame/page breaks — removes these break characters. Obviously, this may greatly upset text flow.
+
+Remove excess at end of paragraphs and stories — spaces and tabs at the end of paragraphs are removed. This also applies to table cells. For the end of stories, in addition to spaces and tabs, forced line breaks and paragraph ends are removed. If one or more paragraph ends exist at the end of a story, one paragraph end will remain, otherwise the story concludes with a story end marker.
+
+Section 5: Settings
+
+The current options may be saved and restored later. Select from the Load drop-down list to choose saved settings, which then updates the current options. Click the Delete button and the saved settings selected in the Load drop-down list are permanently removed. Click the Save button, provide a name for the settings, and the current options are preserved. If the name already exists, the user may choose to replace the saved settings.
+
+The script provides default saved settings named [Default]. These settings cannot be deleted but may be updated to any desired values by saving settings and providing the name [Default], which then overwrites the default settings.
+
+Each time processing begins, the current options are preserved, and the next time the script is launched, options are restored to the last values used. Zoom value is not included in saved settings, but is preserved so that each launch of the script, the last value used is restored.
+
+Localization
+
+The script provides user-configurable localization. By default the script language is US English, which does not require further download or configuration. For other languages, download https://www.marspremedia.com/software/download?asset=text-cleanup-i18n and copy the i18n file for the desired language to the script folder alongside the script file. When launched, the script detects the i18n file and the interface displays the language. If the desired language is not present in the language pack, edit the English i18n file to translate to the desired language, and copy the edited i18n file to the script folder alongside the script file. For details of how to edit and install i18n files, read https://www.marspremedia.com/software/how-to-localize
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com
+
+CHANGE LOG
+
+Version 2.2 (191220)
+    Fix window button return value problem with Windows close button.
+    Put preserve/restore preferences inside doscript call so all part of undo.
+    No longer restore prior zoom and display preferences.
+
+Version 2.1.1 (191007)
+    Remove restore typographers quotes after process wrapped in undo.
+
+Version 2.1 (190902)
+    Miscellaneous.
+
+Version 2.0 (190624)
+    Revise settings.
+    Restore altered app preferences on completion.
+    Miscellaneous.
+
+Version 19.3.8 (1.13)
+    Add license.
+
+Version 19.3.1 (1.12.1)
+    Interface alignment.
+    Cancel button click handler wrap in function.
+
+Version 19.2.24 (1.12)
+    Update settings file error handling.
+    Restore OK all select and show to give user feedback of processing.
+    Internationalization.
+    Optimize function removeZeroWidth().
+    Miscellaneous.
+
+Version 19.2.21 (1.11.1)
+    Miscellaneous.
+
+Version 18.12.8 (1.11)
+    Fix typo "error has occured."
+    Settings file named by title instead of app.activeScript.
+    Revise settings.
+    Revise listSettings object, add settings.lock property.
+    Miscellaneous.
+
+Version 18.11.12 (1.10)
+    Store settings in user data folder.
+
+Version 18.11.6 (1.9)
+    Check active window for story editor and alert user.
+    Apply desired zoom each time text is selected so it centers on screen.
+
+Version 18.9.26 (1.8.2)
+    Miscellaneous.
+
+Version 18.9.22 (1.8.1)
+    Fix flaw in fix apostrophes code.
+    Fix flaw, delete setting confirmation removes setting from UI when responding 'no.'
+
+Version 18.8.19 (1.8)
+    Remove option to search selection. Too many situations result in error and solutions are too convoluted.
+    To improve performance, OK all no longer selects and displays remaining changes while performing them.
+    Notify user when operation is canceled.
+    Fix flaw when removing excess at end of story and excess is found in table cells.
+    Add separate function to remove excess at end of table cells.
+    UI verbiage change "... ends" to "end of...".
+    Add glyphs for fractions to option Fix foot/inch marks.
+
+Version 18.7.20 (1.7)
+    When text settings are null use default value.
+    Revise settings.
+    Miscellaneous.
+
+Version 18.6.17 (1.6.1)
+    Add try/catch around closing scripts panel to fix unhandled exception in foreign languages.
+
+Version 18.6.4 (1.6)
+    Add option Remove zero-width characters.
+    Add option Remove column/frame/page breaks.
+    Add option Fix foot and inch marks.
+
+Version 18.5.15 (1.5)
+    Remove excess at end of stories, fix error when story is a single character.
+    Remove empty paragraphs, fix flaw when story is a single character.
+    Remove empty paragraphs, exclude frame and page breaks.
+    Remove empty paragraphs, revise program logic.
+    Remove excess at end of stories, re-enable inclusion of table content.
+    Remove excess at end of stories, fix error when text is within table cell.
+    Remove excess at end of stories, disable option when searching a selection.
+    Catch processing errors and alert user.
+
+Version 18.4.30 (1.4)
+    Remove excess at end of stories, ignore table content (as of this version does not process tables correctly).
+
+Version 18.4.27 (1.3)
+    Rewrite change engine to properly handle multi-byte characters.
+    Add option to enter zoom percentage used during confirmation.
+    Add option Fix flopped apostrophes.
+
+Version 18.4.9 (1.2)
+    Rewrite change engine to execute each option on all stories, then next option, rather than execute all options on each story, then next story.
+    OK all and Skip all apply only to current option, not all options.
+    Improved confirmation dialog with undo.
+    Close scripts panel on launch to keep it from obscuring view of layout.
+    Display is magnified, set to normal view, and hidden characters are displayed; prior view settings restored on completion.
+    Read legacy settings removed.
+
+Version 17.12.20 (1.1)
+    Create saved settings [Default] if it does not exist.
+    Create saved settings file if it does not exist.
+    Disable delete settings button if none are selected or [Default] is selected.

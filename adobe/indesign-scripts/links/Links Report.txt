@@ -1,0 +1,146 @@
+﻿
+Links Report
+
+JavaScript for Adobe InDesign
+Latest update 9/11/2019, version 2.2.1
+
+The script exports details of all graphics placed in the active InDesign document, a selected InDesign book, or a folder containing any number of InDesign documents. There is also the option to include documents in subfolders. The report will also include instances of pasted graphics, but cannot provide details beyond document name and page number on which they appear.
+
+The script was created to improve on the inadequacies of standard tools that omit certain details and output to formats that are awkward to further process. CSV and TXT output will open in Excel where details may be sorted by column to focus on specifics such as color space, effective resolution, and full path to detect if any images are linked outside the job folder. Also, a warning is added to the status column if a link of the same name is placed more than once and linked to different paths. The script includes graphics on all document pages and master pages, but it does not include graphics on the pasteboard.
+
+    Generate a list of graphics placed in InDesign documents
+    Export from the active document, a book, or a folder of documents
+    Option to include documents in subfolders
+    Include color space (RGB, CMYK, Gray, 1-bit B&W)
+    Include effective PPI
+    Detects files of same name linked to different paths
+    Generate comma-separated values or tab-separated text
+    Option to output JSON or XML
+    CSV and TXT may be opened by popular spreadsheet applications
+    User-configurable localization
+
+Instructions for use
+
+The interface has three sections: Process, Include, and Output. When the OK button is clicked, the report is generated. There is no option to define the destination; the report is written to the folder containing the active document or selected book, or the selected folder itself. The report file is named to match the active document, selected book, or selected folder, plus “_Links Report” and the extension associated with the chosen format (.txt, .csv, .json, or .xml).
+
+Section 1: Process
+
+Active Document — generates a report of graphics placed in the document that is currently open and the top-most window if multiple documents are open.
+
+Book — select an InDesign book file and the report includes graphics placed in all documents the book file references.
+
+Folder — select a folder and the report includes graphics placed in all InDesign documents in the folder. Only files with the .indd extension are processed.
+
+Include subfolders — if enabled, documents in all subfolders are also processed.
+
+Section 2: Include
+
+Each choice represents a column to include in the report. The order of columns in the report will be as listed on screen (order is across first, then down). Any choice unchecked is not included, and a column for it will not exist in the report.
+
+Name — the name of the linked file and how it appears in the InDesign Links window. For graphics without a link, the column lists “pasted graphic.”
+
+Status — the status of the link, reported as OK, missing, modified, inaccessible, or embedded for pasted graphics. Also, when any graphic is placed more than once and any of those instances are linked to a path that differs from the others, a warning is added to the status column of every instance of the link: “instances use different paths.” This circumstance is unusual and could indicate a mistake that produces undesired results when the document is output.
+
+Effective PPI — applies to raster images. The ultimate resolution considering the degree to which the image is scaled, the resolution value of importance for final output. For vector graphics this column is blank.
+
+Color space — common examples include RGB, CMYK, Gray, and 1-bit B&W.
+
+Page — the page on which the linked file is placed in the document. Note this is the page’s label as it appears in the layout, not its absolute number in the document sequence. When sections and/or alternate layouts are used, the reported page number may vary from its absolute number.
+
+Document — the name of the InDesign document in which the linked file is placed.
+
+Name less ext — the name of the linked file less its file extension.
+
+Extension — the extension of the linked file.
+
+Instances — the number of times the graphic has been placed in the document, or throughout all documents when processing a book or folder.
+
+Full path — the name of the linked file preceded by the platform-specific path of where the file exists in the computer’s file system.
+
+Section 3: Output
+
+CSV — report is output as comma separated values (columns are wrapped in quotes and separated by comma character). Use “open with...” and select your preferred spreadsheet application such as Microsoft Excel. If the CSV file type is associated with your preferred spreadsheet application, you may also double-click to open the report.
+
+TXT — report is output as tab-delimited text (tab character is inserted between columns). Use “open with...” and select your preferred spreadsheet application such as Microsoft Excel.
+
+JSON — report is output as JavaScript Object Notation.
+
+XML — report is output as eXtensible Markup Language.
+
+Combine instances of same link into single row — normally each link, whether unique or multiple instances of the same file name, is listed as a unique row of the report. When this option is enabled, instances of the same file name placed more than once are combined into a single row. The values for effective ppi, pages, and document (if set to include) are each concatenated with commas when the values vary among multiple instances of a single link. In the rare case the full path differs among multiple instances of a single link, the repeated instances of that link will not be combined into a single row. This is to alert the user to the unusual condition and prevent the full path column from becoming unwieldy. As well, when this condition is detected, a warning is added to the status column of each link affected.
+
+Settings
+
+Each time processing begins, the include and output options are preserved, and the next time the script is launched, the options are restored to the last values used.
+
+Localization
+
+The script provides user-configurable localization. By default the script language is US English, which does not require further download or configuration. For other languages, download https://www.marspremedia.com/software/download?asset=links-report-i18n and copy the i18n file for the desired language to the script folder alongside the script file. When launched, the script detects the i18n file and the interface displays the language. If the desired language is not present in the language pack, edit the English i18n file to translate to the desired language, and copy the edited i18n file to the script folder alongside the script file. For details of how to edit and install i18n files, read https://www.marspremedia.com/software/how-to-localize
+
+NOTE: Output to formats other than XML write data keys using translated text. Regardless of language, XML tags remain US English kebab-case (dash case). For all formats, data values output are the unaltered values stored in the InDesign document.
+
+For help installing scripts, see https://www.marspremedia.com/software/how-to-adobe-cc
+
+IMPORTANT: by downloading the script you agree that the software is provided without any warranty, express or implied. USE AT YOUR OWN RISK. Always make backups of important data.
+
+For further questions or comments, contact the author William Campbell at william@marspremedia.com
+
+CHANGE LOG
+
+Version 2.2.2 (191220)
+    Fix window button return value problem with Windows close button.
+
+Version 2.2.1 (190911)
+    Update progress window in message function.
+
+Version 2.2 (190902)
+    Miscellaneous.
+
+Version 2.1 (190719)
+    Preserve and restore last settings used.
+
+Version 2.0.1 (190624)
+    CSV/TXT change encoding back to UTF-8 instead of ISO-10646-UTF-16LE.
+
+Version 2.0 (190514)
+    Restore altered app preferences on completion.
+    Miscellaneous.
+
+Version 19.3.8 (1.5)
+    Add license.
+    Correct documentation and interface image.
+
+Version 19.2.24 (1.4)
+    Internationalization.
+    CSV and TXT use encoding ISO-10646-UTF-16LE to fix extended characters in Excel.
+    Fix XML encoding fail to detect instanceof String. Use constructor.name instead.
+    Remove encodeURI for XML values. Not necessary; spaces are OK in values.
+    JSON use i18n value for key names.
+    Miscellaneous.
+
+Version 19.2.21 (1.3.3)
+    Miscellaneous.
+
+Version 18.12.8 (1.3.2)
+    Fix typo "error has occured."
+    Miscellaneous.
+
+Version 18.9.26 (1.3.1)
+    Miscellaneous.
+
+Version 18.8.19 (1.3)
+    Update getSubFiles function.
+    Update progress function.
+    Wrap work in process function, wrapped in try/catch.
+    Improve error catching.
+    Streamline report generator, fix excess line ends.
+    Process book limit to .indb extension.
+
+Version 18.5.15 (1.2)
+    Remove close button from progress bar.
+    Catch processing errors and alert user.
+
+Version 18.4.9 (1.1)
+    Revise progress window.
+    Fix bug that causes converted documents to disable active document option.
+    Add instances of placed graphics.

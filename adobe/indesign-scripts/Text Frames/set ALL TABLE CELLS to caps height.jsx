@@ -1,0 +1,1 @@
+﻿app.activeDocument.stories.everyItem().tables.everyItem().cells.everyItem().firstBaselineOffset = FirstBaseline.CAP_HEIGHT;

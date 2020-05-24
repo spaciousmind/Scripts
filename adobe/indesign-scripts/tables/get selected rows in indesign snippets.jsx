@@ -1,0 +1,1 @@
+﻿app.selection[0].rows.itemByRange(app.selection[0], app.selection[0].rows[-1]).select();app.selection[0].rows[-1].select(SelectionOptions.ADD_TO);

@@ -1,0 +1,1 @@
+﻿myTF = app.selection[0]//alert = myTF;if (myTF instanceof TextFrame){        myTF.textFramePreferences.autoSizingType = AutoSizingTypeEnum.OFF;        }

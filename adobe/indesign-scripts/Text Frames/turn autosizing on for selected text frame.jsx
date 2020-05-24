@@ -1,0 +1,1 @@
+﻿myTF = app.selection[0]//alert = myTF;if (myTF instanceof TextFrame){        myTF.textFramePreferences.autoSizingReferencePoint = AutoSizingReferenceEnum.TOP_CENTER_POINT;    myTF.textFramePreferences.autoSizingType = AutoSizingTypeEnum.HEIGHT_ONLY;                }
