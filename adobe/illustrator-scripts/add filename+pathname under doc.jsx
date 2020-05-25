@@ -1,0 +1,1 @@
+﻿var aDoc = app.activeDocument;var aPath = activeDocument.path;var aTF = aDoc.textFrames.add(); var extension = activeDocument.name.replace(/(.*?)(?:(\.[^.]+))?$/,'$2');aTF.contents = aDoc.name + "\r" + aPath.fsName + extension;aTF.position = [20, -50];

@@ -4,10 +4,11 @@ $.writeln("----------------------------");
 (function () {
 
 	var runscript = {};
-//	runscript.script_dir = scriptPath().path;
-	runscript.script_dir = "/e/Projects/Scripts/test";
-	var re = new RegExp(runscript.script_dir);
-	$.writeln(re);
+	runscript.script_dir = scriptPath().path;
+	$.writeln("script dir = " + runscript.script_dir);
+//	runscript.script_dir = "/e/Projects/Scripts/test";
+//	var re = new RegExp(runscript.script_dir);
+//	$.writeln(re);
 //    "/e/Projects/Scripts/adobe/indesign-scripts"
 	$.writeln("runscript.script_dir = " + runscript.script_dir)
 	runscript.history = get_history();
@@ -29,7 +30,7 @@ $.writeln("----------------------------");
 
 	function get_scripts (dir, list, level) {
 		var f = dir.getFiles ('*.*');
-		$.writeln("level = " + level);
+	//	$.writeln("level = " + level);
 
 	//	$.writeln("f1= " + f[1]);
 	//	$.writeln("f2= " + f[2]);
@@ -46,15 +47,15 @@ $.writeln("----------------------------");
 	//			prefix = f[i].parent.name + '/' : '';
 	//$.writeln("f i + " = f.name);
 		//			$.writeln("f i name = " + f[i].parent.name + "/" + f[i].name);
-$.writeln("f0= " + f[0]);
-		$.writeln("f1= " + f[1]);
-		testingscript = "/e/Projects/Scripts/test/b/c/c.jsx";
-testingscript.replace(re, '0');
-		$.writeln("testing2 = " +testingscript);
-//		$.writeln("testing = " +testing);
-	//	$.writeln("test = " + test);
-				$.writeln("prefix = " + prefix);
-				$.writeln("-----");
+//$.writeln("f0= " + f[0]);
+		//$.writeln("f1= " + f[1]);
+		//testingscript = "/e/Projects/Scripts/test/b/c/c.jsx";
+//testingscript.replace(re, '0');
+		//$.writeln("testing2 = " +testingscript);
+////		$.writeln("testing = " +testing);
+	////	$.writeln("test = " + test);
+				//$.writeln("prefix = " + prefix);
+				//$.writeln("-----");
 				list.push (decodeURI (prefix + f[i].name));
 			}
 		}

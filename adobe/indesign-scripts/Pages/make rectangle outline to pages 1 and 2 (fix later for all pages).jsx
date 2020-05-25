@@ -1,0 +1,1 @@
+﻿myDocument = app.activeDocument;var myDocument = app.documents.item(0);var myPage = myDocument.pages.item(0);var pageBounds = myPage.boundsvar rect = myPage.rectangles.add({strokeColor:'Black', geometricBounds:pageBounds});var rect2 = myDocument.pages.item(1).rectangles.add({strokeColor:'Black', geometricBounds:pageBounds});

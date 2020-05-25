@@ -1,0 +1,1 @@
+﻿colour = makeColor("mystery colour", ColorSpace.CMYK, ColorModel.process, [100, 10, 50, 0]);  app.selection[0].texts.everyItem().fillColor = colour;

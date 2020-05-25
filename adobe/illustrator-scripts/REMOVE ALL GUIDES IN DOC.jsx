@@ -1,0 +1,1 @@
+﻿// Remove all guidesvar doc = app.activeDocument;for ( i = doc.pathItems.length-1; i >= 0; i--){var p = doc.pathItems[i];if (p.guides == true) {p.remove();}}// Remove all guidesvar doc = app.activeDocument;for ( i = doc.pathItems.length-1; i >= 0; i--){var p = doc.pathItems[i];if (p.guides == true) {p.remove();}}
