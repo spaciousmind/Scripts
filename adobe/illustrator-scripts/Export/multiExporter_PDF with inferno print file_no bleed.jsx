@@ -1154,23 +1154,6 @@ var multi_exporter = {
 	}
 };
 
-function getPDFOptions()
-{
-	// Create the PDFSaveOptions object to set the PDF options
-	var pdfSaveOpts = new PDFSaveOptions();
-	
-	// Setting PDFSaveOptions properties. Please see the JavaScript Reference
-	// for a description of these properties.
-	// Add more properties here if you like
-	pdfSaveOpts.pDFPreset = "Inferno Print File (no bleed)";
-	
-    
-	// uncomment to view the pdfs after conversion.
-	// pdfSaveOpts.viewAfterSaving = true;
-	
-
-	return pdfSaveOpts;
-}
 
 
 multi_exporter.init();
