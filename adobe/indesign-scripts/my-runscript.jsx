@@ -30,12 +30,7 @@ $.writeln("----------------------------");
 
 	function get_scripts (dir, list, level) {
 		var f = dir.getFiles ('*.*');
-	//	$.writeln("level = " + level);
 
-	//	$.writeln("f1= " + f[1]);
-	//	$.writeln("f2= " + f[2]);
-	//	$.writeln("f3= " + f[3]);
-	//	$.writeln("f4= " + f[4]);
 		for (var i = 0; i < f.length; i++) {
 
 			if (f[i] instanceof Folder && !/^\./.test(f[i].name)) {
@@ -44,19 +39,9 @@ $.writeln("----------------------------");
 				//$.bp(f[i].name === 'index_show.jsx')
 		//		prefix = level > 1 ? f[i].parent.name.replace(/^.+\//,'/') : '';
 				prefix = (level > 1) ? f[i].parent.name + '/' : ''; //FIX THIS LINE HERE - Conditional (Ternary) Operator
-	//			prefix = f[i].parent.name + '/' : '';
-	//$.writeln("f i + " = f.name);
-		//			$.writeln("f i name = " + f[i].parent.name + "/" + f[i].name);
-//$.writeln("f0= " + f[0]);
-		//$.writeln("f1= " + f[1]);
-		//testingscript = "/e/Projects/Scripts/test/b/c/c.jsx";
-//testingscript.replace(re, '0');
-		//$.writeln("testing2 = " +testingscript);
-////		$.writeln("testing = " +testing);
-	////	$.writeln("test = " + test);
-				//$.writeln("prefix = " + prefix);
-				//$.writeln("-----");
-				list.push (decodeURI (prefix + f[i].name));
+
+			//	list.push (decodeURI (prefix + f[i]));
+			list.push (match(/(.+$)/);
 			}
 		}
 		return list;

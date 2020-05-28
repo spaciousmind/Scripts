@@ -1,13 +1,15 @@
 #target indesign
 
 /////check link to theFile --- not opening .psd in photoshop
-
+$.writeln("---------------------------");
 var doc = app.activeDocument;
 var myImage = app.selection[0].images[0];
 var myLink = app.selection[0].graphics[0].itemLink;
 var myLinkfp = myLink.filePath;
 var myLinkName = myLink.name.match(/(.*)(\.[^\.]+)/)[1];
-var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\:])/)[1];
+var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\\])/)[1];
+
+$.writeln("myLinkfp = "+myLinkfp);
 
 var effectivePPI = String(myImage.effectivePpi);
 effectivePPI.match(/(\d+),(\d+)/);
@@ -49,12 +51,15 @@ function CreateBridgeTalkMessage(imagePath, myLinkName, scalePct) {
     myLink.update();
 }
 
+
+	// var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");  //--version for WORK. USE IN BELOW FUNCTION
 //-----------------------------------------------
 function ResaveInPS(imagePath, myLinkName, scalePct) {
 	var psDoc;
 	app.displayDialogs = DialogModes.NO;
-	var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");
+	$.writeln("imagepathpre = "+imagePath);
 	var imagePath = imagePath.replace(/([^\.]+$)/,"psd");
+		$.writeln("imagepathpost = "+imagePath);
 	var startRulerUnits = app.preferences.rulerUnits;
 	app.preferences.rulerUnits = Units.PERCENT;
 	psDoc = app.open(new File(imagePath));
