@@ -1,4 +1,4 @@
 [core]
-	autocrlf = true
+	autocrlf=true
 
   *	text=auto
