@@ -1,5 +1,12 @@
 
 $.writeln("==================");
+
+  os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC": "WINDOWS";}
+
+
+
+
+
 var dir = "/e/Projects/Scripts/test";
 var re = new RegExp(dir);
 $.writeln(re);
@@ -18,13 +25,18 @@ function get_scripts (dir, list, level) {
 
     if (/\.jsx?(bin)?/.test(f[i])) {
             $.writeln("pi = " + f[i]);
+            var p = f[i].path.match(/(.*)/)[1];
+            var filetest = f[i].path.replace(/(\/e\/Projects\/Scripts\/test)/,"");
+            $.writeln("p = " + p);
+          //  var filetest = f[i].replace(/(.)/,"blah");
+            $.writeln("filetest = " + filetest);
     }
 
 //  $.writeln("i = " + i);
     //  var p = f[i].getRelativeURI();
-var p = f[i].path.match(/("/e/Projects/Scripts/test")/);
+//var p = f[i].path.match(/(.*)(\.[^\.]+)/)[1];
 //p.match(/(test)/);
-            $.writeln("ppppppp = " +p);
+//            $.writeln("ppppppp = " +p);
 //  newPath = Paths.get(f[i]);
 //  $.writeln("newPath = " newPath)
     if (f[i] instanceof Folder && !/^\./.test(f[i].name)) {
@@ -43,7 +55,7 @@ var p = f[i].path.match(/("/e/Projects/Scripts/test")/);
   //var re = new RegExp("/e/Projects/Scripts/test/"");
   //$.writeln(re);
 
-//  var newf = "/e/Projects/Scripts/test/b/c/d/d.jsx";
+//var newf = "/e/Projects/Scripts/test/b/c/d/d.jsx";
 //newf.match(/(re)/)[1];
 //$.writeln("newf =" + newf);
 

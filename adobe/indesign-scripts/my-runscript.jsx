@@ -41,7 +41,7 @@ $.writeln("----------------------------");
 				prefix = (level > 1) ? f[i].parent.name + '/' : ''; //FIX THIS LINE HERE - Conditional (Ternary) Operator
 
 			//	list.push (decodeURI (prefix + f[i]));
-			list.push (match(/(.+$)/);
+			list.push (decodeURI (prefix + f[i].name));
 			}
 		}
 		return list;
