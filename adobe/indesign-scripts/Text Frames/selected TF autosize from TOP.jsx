@@ -16,7 +16,7 @@ for (var i=0; i < sel.length; i++){
 
 		if (mySelection instanceof TextFrame){
 			mySelection.textFramePreferences.autoSizingReferencePoint =
-			AutoSizingReferenceEnum.CENTER_POINT;
+			AutoSizingReferenceEnum.TOP_CENTER_POINT;
 
 			mySelection.textFramePreferences.autoSizingType = 
 			AutoSizingTypeEnum.HEIGHT_ONLY;

@@ -1,2 +1,2 @@
-os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC": "WINDOWS";}
+os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC": "WINDOWS";
 $.writeln("os = " +os);
