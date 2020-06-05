@@ -52,9 +52,10 @@ function ResaveInPS(imagePath, myLinkName, scalePct) {
 	var psDoc;
 	app.displayDialogs = DialogModes.NO;
 	var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");
+	var imagePathPSD = imagePath.replace(/([^\.]+$)/,"psd");
 	var startRulerUnits = app.preferences.rulerUnits;
 	app.preferences.rulerUnits = Units.PERCENT;
-	psDoc = app.open(new File(imagePath));
+	psDoc = app.open(new File(imagePathPSD));
 	psdSaveOptions = new PhotoshopSaveOptions();
 		psdSaveOptions.layers = true;
 	jpgSaveOptions = new JPEGSaveOptions();

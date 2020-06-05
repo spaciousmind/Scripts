@@ -5,15 +5,7 @@ var myImage = app.selection[0].images[0];
 var myLink = app.selection[0].graphics[0].itemLink;
 var myLinkfp = myLink.filePath;
 var myLinkName = myLink.name.match(/(.*)(\.[^\.]+)/)[1];
-var myLinkcurrentFolder = myLink.filePath.match(/^(.*[\:])/)[1];
-
-var decodedmyLinkName = encodeURI(myLinkName);
-var decodedmyLinkcurrentFolder = encodeURI(myLinkcurrentFolder);
-$.writeln("decodedmyLinkName = " + decodedmyLinkName);
-$.writeln("decodedmyLinkcurrentFolder = " + decodedmyLinkcurrentFolder);
-$.writeln("myLinkfp = " +myLinkfp);
-$.writeln("myLinkName = " +myLinkName);
-$.writeln("myLinkcurrentFolder  = " +myLinkcurrentFolder );
+var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\:])/)[1];
 
 var effectivePPI = String(myImage.effectivePpi);
 effectivePPI.match(/(\d+),(\d+)/);
@@ -28,9 +20,11 @@ if (ppiH == ppiV) {
 		var scalePercentageRounded = Math.round(scalePercentage);
 		$.writeln("scalePercentage = " + scalePercentage);
 		$.writeln("scalePercentageRounded = " + scalePercentageRounded);
-		$.writeln("THEFILEPRE = " + myLinkcurrentFolder + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg');
-//				var theFile = File("WIP/Whakauae/05352_WHAKAUAE_2019%20Annual%20Report/05352%20Resources/New%20cover%20pics/Options/test_upscaled_185-pct.jpg");
-//					$.writeln("theFile = " + theFile);
+				var theFilepre = myLinkCurrentFolder +  myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.psd';
+				var theFile = File(myLinkCurrentFolder + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.psd');
+				$.writeln("theFilepre = " +theFilepre);
+				$.writeln("theFile = " +theFile);
+
 		CreateBridgeTalkMessage(myLinkfp, myLinkName, scalePercentage);
 	} else {
 		alert("PPI higher than 300 already");
@@ -49,21 +43,18 @@ function CreateBridgeTalkMessage(imagePath, myLinkName, scalePct) {
 	bt.onResult = function(resObj) {
         		}
 	bt.send(30);
-//		myLink.relink(theFile);
- //   myLink.update();
+		myLink.relink(theFile);
+    myLink.update();
 }
 
 //-----------------------------------------------
 function ResaveInPS(imagePath, myLinkName, scalePct) {
-	$.writeln("imagePath = " + imagePath);
-	$.writeln("myLinkName = " + myLinkName);
-	$.writeln("scalePct = " + scalePct);
 	var psDoc;
 	app.displayDialogs = DialogModes.NO;
+	var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");
 	var startRulerUnits = app.preferences.rulerUnits;
 	app.preferences.rulerUnits = Units.PERCENT;
 	psDoc = app.open(new File(imagePath));
-	var currentPath = psDoc.path;
 	psdSaveOptions = new PhotoshopSaveOptions();
 		psdSaveOptions.layers = true;
 	jpgSaveOptions = new JPEGSaveOptions();
@@ -71,8 +62,7 @@ function ResaveInPS(imagePath, myLinkName, scalePct) {
 		jpgSaveOptions.formatOptions = FormatOptions.STANDARDBASELINE;
 		jpgSaveOptions.matte = MatteType.NONE;
 		jpgSaveOptions.quality = 12;
-	var saveFilePSD = File( currentPath + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
-	var saveFileJPG = File( currentPath + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
+	var saveFilePSD = File( psDoc.path + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
 	psDoc.resizeImage(Number(scalePct), null, 300, ResampleMethod.BICUBICAUTOMATIC);
 	psDoc.saveAs(saveFileJPG, jpgSaveOptions, true, Extension.LOWERCASE);
 	psDoc.saveAs(saveFilePSD, psdSaveOptions, true, Extension.LOWERCASE);

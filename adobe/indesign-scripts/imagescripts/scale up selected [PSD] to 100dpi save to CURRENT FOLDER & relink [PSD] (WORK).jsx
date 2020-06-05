@@ -1,5 +1,6 @@
 #target indesign
 
+$.writeln("------------------- ");
 var doc = app.activeDocument;
 var myImage = app.selection[0].images[0];
 var myLink = app.selection[0].graphics[0].itemLink;
@@ -15,19 +16,19 @@ var ppiV = effectivePPI.replace(/(\d+),(\d+)/, '$2');
 
 
 if (ppiH == ppiV) {
-	if (ppiH < 300) {
-		var scalePercentage = ((300 - ppiH) / ppiH) * 100 + 100;
+	if (ppiH < 100) {
+		var scalePercentage = ((100 - ppiH) / ppiH) * 100 + 100;
 		var scalePercentageRounded = Math.round(scalePercentage);
 		$.writeln("scalePercentage = " + scalePercentage);
 		$.writeln("scalePercentageRounded = " + scalePercentageRounded);
-				var theFilepre = myLinkCurrentFolder +  myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg';
-				var theFile = File(myLinkCurrentFolder + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg');
+				var theFilepre = myLinkCurrentFolder +  myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.psd';
+				var theFile = File(myLinkCurrentFolder + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.psd');
 				$.writeln("theFilepre = " +theFilepre);
 				$.writeln("theFile = " +theFile);
 
 		CreateBridgeTalkMessage(myLinkfp, myLinkName, scalePercentage);
 	} else {
-		alert("PPI higher than 300 already");
+		alert("PPI higher than 100 already");
 	}
 } else {
 	alert("Horizontal and vertical resolutions are not the same.");
@@ -63,10 +64,8 @@ function ResaveInPS(imagePath, myLinkName, scalePct) {
 		jpgSaveOptions.matte = MatteType.NONE;
 		jpgSaveOptions.quality = 12;
 	var saveFilePSD = File( psDoc.path + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
-	var saveFileJPG = File( psDoc.path + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
-	psDoc.resizeImage(Number(scalePct), null, 300, ResampleMethod.BICUBICAUTOMATIC);
+	psDoc.resizeImage(Number(scalePct), null, 100, ResampleMethod.BICUBICAUTOMATIC);
 	psDoc.saveAs(saveFilePSD, psdSaveOptions, true, Extension.LOWERCASE);
-	psDoc.saveAs(saveFileJPG, jpgSaveOptions, true, Extension.LOWERCASE);
 	psDoc.close(SaveOptions.DONOTSAVECHANGES);
 	app.open(saveFilePSD);
 	app.preferences.rulerUnits = startRulerUnits;
