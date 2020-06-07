@@ -56,7 +56,7 @@ function straightenFrames(){
 				imgBounds = myImg.geometricBounds;
 
             var posAngle = Math.abs(rectRot);
-            
+
             if( posAngle == 0 ){
                 continue;
             }
