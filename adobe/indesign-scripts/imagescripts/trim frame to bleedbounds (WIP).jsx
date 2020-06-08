@@ -1,38 +1,51 @@
-#target indesign
 $.writeln("========================================");
-var space = "\n";
-myDoc = app.activeDocument;
 
-var myRect = app.selection[0];
-var myPage = myRect.parentPage;
+var bleed = app.activeDocument.documentPreferences.documentBleedTopOffset;
 
-//check imgBounds
-var rectBounds = myRect.geometricBounds,
-pageBounds = myPage.bounds //in the format [y1, x1, y2, x2], top-left and bottom-right
+myObj = app.selection[0];
 
-//check bleed (can be made more specific, good for now)
-var bleed = myDoc.documentPreferences.documentBleedTopOffset;
-//specific for pagesideoptions.SINGLE_SIDED ??
-var bleedBounds = new Array(pageBounds[0]-bleed, pageBounds[1]-bleed, pageBounds[2]+bleed, pageBounds[3]+bleed);
 
-//myRect.geometricBounds = bleedBound;
-$.writeln("bleed = "+bleed);
+var myFrame = {};
+myFrame.object = app.selection[0],
+myFrame.topLeftY = app.selection[0].geometricBounds[0],
+myFrame.topLeftX = app.selection[0].geometricBounds[1],
+myFrame.bottomRightY = app.selection[0].geometricBounds[2],
+myFrame.bottomRightX = app.selection[0].geometricBounds[3];
+
+var pageBounds = {};
+pageBounds.topLeftY = app.selection[0].parentPage.bounds[0],
+pageBounds.topLeftX = app.selection[0].parentPage.bounds[1],
+pageBounds.bottomRightY = app.selection[0].parentPage.bounds[2],
+pageBounds.bottomRightX = app.selection[0].parentPage.bounds[3];
+
+var bleedBounds = {};
+bleedBounds.topLeftY = pageBounds.topLeftY - bleed,
+bleedBounds.topLeftX = pageBounds.topLeftX - bleed,
+bleedBounds.bottomRightY = pageBounds.bottomRightY + bleed,
+bleedBounds.bottomRightX = pageBounds.bottomRightX + bleed;
+
+
+//$.writeln("myFrame.topLeftY = " + Math.round(myFrame.topLeftY));
+//$.writeln("myFrame.topLeftX = " + Math.round(myFrame.topLeftX));
+$.writeln("myFrame.bottomRightY = " + Math.round(myFrame.bottomRightY));
+$.writeln("myFrame.bottomRightX = " + Math.round(myFrame.bottomRightX));
 $.writeln(".");
+//$.writeln("bleedBounds.topLeftY = " + Math.round(bleedBounds.topLeftY));
+//$.writeln("bleedBounds.topLeftX = " + Math.round(bleedBounds.topLeftX));
+$.writeln("bleedBounds.bottomRightY = " + Math.round(bleedBounds.bottomRightY));
+$.writeln("bleedBounds.bottomRightX = " + Math.round(bleedBounds.bottomRightX));
 
-$.writeln("[rectBounds]: top left x = "+Math.round(rectBounds[0]));
-$.writeln("[rectBounds]: top left y = "+Math.round(rectBounds[1]));
-$.writeln("[rectBounds]: bottom right x = "+Math.round(rectBounds[2]));
-$.writeln("[rectBounds]: bottom right y = "+Math.round(rectBounds[3]));
-$.writeln(".");
 
-$.writeln("[pageBounds]: top left x = "+Math.round(pageBounds[0]));
-$.writeln("[pageBounds]: top left y = "+Math.round(pageBounds[1]));
-$.writeln("[pageBounds]: bottom right x = "+Math.round(pageBounds[2]));
-$.writeln("[pageBounds]: bottom right y = "+Math.round(pageBounds[3]));
-$.writeln(".");
-
-$.writeln("[bleedBounds]: top left x = "+Math.round(bleedBounds[0]));
-$.writeln("[bleedBounds]: top left y = "+Math.round(bleedBounds[1]));
-$.writeln("[bleedBounds]: bottom right x = "+Math.round(bleedBounds[2]));
-$.writeln("[bleedBounds]: bottom right y = "+Math.round(bleedBounds[3]));
-$.writeln(".");
+if (myFrame.topLeftY < bleedBounds.topLeftY){
+  myObj.geometricBounds = [bleedBounds.topLeftY, myFrame.topLeftX, myFrame.bottomRightY, myFrame.bottomRightX];
+  myFrame.topLeftY = bleedBounds.topLeftY;}
+if (myFrame.topLeftX < bleedBounds.topLeftX){
+  myObj.geometricBounds = [myFrame.topLeftY, bleedBounds.topLeftX, myFrame.bottomRightY, myFrame.bottomRightX];
+  myFrame.topLeftX = bleedBounds.topLeftX;}
+if (myFrame.bottomRightY > bleedBounds.bottomRightY){
+  myObj.geometricBounds = [myFrame.topLeftY, myFrame.topLeftX, bleedBounds.bottomRightY, myFrame.bottomRightX];
+  myFrame.bottomRightY = bleedBounds.bottomRightY;}
+if (myFrame.bottomRightX > bleedBounds.bottomRightX){
+  $.writeln("trueX");
+  myObj.geometricBounds = [myFrame.topLeftY, myFrame.topLeftX, myFrame.bottomRightY, bleedBounds.bottomRightX];
+  myFrame.bottomRightX = bleedBounds.bottomRightX;}
