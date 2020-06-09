@@ -1,12 +1,11 @@
-$.writeln("========================================");
+//$.writeln("========================================");
 
 var undoName = "trim selected frames to bleedbounds"
     app.doScript(main, ScriptLanguage.JAVASCRIPT, undefined, UndoModes.FAST_ENTIRE_SCRIPT, undoName);
 
 function main(){
-
   var bleed = app.activeDocument.documentPreferences.documentBleedTopOffset;
-  var sel = app.a ctiveDocument.selection;
+  var sel = app.activeDocument.selection;
 
   for (var i=0; i < sel.length; i++){
     var mySelection = app.activeDocument.selection[i];
