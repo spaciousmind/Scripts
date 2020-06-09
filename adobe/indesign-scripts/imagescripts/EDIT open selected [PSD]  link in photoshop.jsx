@@ -47,7 +47,7 @@ function CreateBridgeTalkMessage(imagePath, myLinkName)
 {
 	var bt = new BridgeTalk();
 	bt.target = "photoshop";
-	bt.body = OpenInPS.toSource()+"("+os.toSource()+ ","+imagePath.toSource()+ "," + myLinkName.toSource()+ ");";
+	bt.body = OpenInPS.toSource()+"("+os.toSource()+ "," +imagePath.toSource()+ "," + myLinkName.toSource()+ ");";
 	bt.onError = function(errObj) {
 		$.writeln(errObj.body)
 	}

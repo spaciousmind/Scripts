@@ -1,22 +1,24 @@
 #target indesign
 
+os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC" : "WINDOWS";
 var doc = app.activeDocument;
 var myImage = app.selection[0].images[0];
 var myLink = app.selection[0].graphics[0].itemLink;
 var myLinkfp = myLink.filePath;
 var myLinkName = myLink.name.match(/(.*)(\.[^\.]+)/)[1];
-var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\:])/)[1];
+if (os == "MAC"){
+	var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\:])/)[1];}
+else {
+	var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\\])/)[1];}
 
 var effectivePPI = String(myImage.effectivePpi);
 effectivePPI.match(/(\d+),(\d+)/);
 var ppiH = effectivePPI.replace(/(\d+),(\d+)/, '$1');
 var ppiV = effectivePPI.replace(/(\d+),(\d+)/, '$2');
 
-
-
 if (ppiH == ppiV) {
-	if (ppiH < 300) {
-		var scalePercentage = ((300 - ppiH) / ppiH) * 100 + 100;
+	if (ppiH < 100) {
+		var scalePercentage = ((100 - ppiH) / ppiH) * 100 + 100;
 		var scalePercentageRounded = Math.round(scalePercentage);
 		$.writeln("scalePercentage = " + scalePercentage);
 		$.writeln("scalePercentageRounded = " + scalePercentageRounded);
@@ -27,7 +29,7 @@ if (ppiH == ppiV) {
 
 		CreateBridgeTalkMessage(myLinkfp, myLinkName, scalePercentage);
 	} else {
-		alert("PPI higher than 300 already");
+		alert("PPI higher than 100 already");
 	}
 } else {
 	alert("Horizontal and vertical resolutions are not the same.");
@@ -37,25 +39,25 @@ if (ppiH == ppiV) {
 function CreateBridgeTalkMessage(imagePath, myLinkName, scalePct) {
 	var bt = new BridgeTalk();
 	bt.target = "photoshop";
-	bt.body = ResaveInPS.toSource()+"("+imagePath.toSource()+ "," + myLinkName.toSource()+ "," + scalePct.toSource()+");";
+	bt.body = ResaveInPS.toSource()+"("+os.toSource()+ "," +imagePath.toSource()+ "," + myLinkName.toSource()+ "," + scalePct.toSource()+");";
 	bt.onError = function(errObj) {
-		}
+		$.writeln(errObj.body)}
 	bt.onResult = function(resObj) {
-        		}
+  	$.writeln(resObj.body)}
 	bt.send(30);
-		myLink.relink(theFile);
-    myLink.update();
+	myLink.relink(theFile);
+  myLink.update();
 }
 
 //-----------------------------------------------
-function ResaveInPS(imagePath, myLinkName, scalePct) {
+function ResaveInPS(os, imagePath, myLinkName, scalePct) {
 	var psDoc;
 	app.displayDialogs = DialogModes.NO;
-	var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");
-	var imagePathPSD = imagePath.replace(/([^\.]+$)/,"psd");
+	if (os == "MAC"){
+		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");}
 	var startRulerUnits = app.preferences.rulerUnits;
 	app.preferences.rulerUnits = Units.PERCENT;
-	psDoc = app.open(new File(imagePathPSD));
+	psDoc = app.open(new File(imagePath));
 	psdSaveOptions = new PhotoshopSaveOptions();
 		psdSaveOptions.layers = true;
 	jpgSaveOptions = new JPEGSaveOptions();

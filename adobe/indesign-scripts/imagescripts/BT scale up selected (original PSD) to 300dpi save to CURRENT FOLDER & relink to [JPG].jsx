@@ -1,15 +1,15 @@
 #target indesign
 
+os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC" : "WINDOWS";
 var doc = app.activeDocument;
 var myImage = app.selection[0].images[0];
 var myLink = app.selection[0].graphics[0].itemLink;
 var myLinkfp = myLink.filePath;
-//var myLinkparentFolder = myLink.filePath.match(/(.*\\[^\\]*)(\\[^\\]*\\)/)[1];
 var myLinkName = myLink.name.match(/(.*)(\.[^\.]+)/)[1];
-var myLinkcurrentFolder = myLink.filePath.match(/^(.*[\:])/);
-
-$.writeln("myLinkfp = " +myLinkfp)
-//$.writeln("myLinkparentFolder = " +myLinkparentFolder)
+if (os == "MAC"){
+	var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\:])/)[1];}
+else {
+	var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\\])/)[1];}
 
 var effectivePPI = String(myImage.effectivePpi);
 effectivePPI.match(/(\d+),(\d+)/);
@@ -24,9 +24,10 @@ if (ppiH == ppiV) {
 		var scalePercentageRounded = Math.round(scalePercentage);
 		$.writeln("scalePercentage = " + scalePercentage);
 		$.writeln("scalePercentageRounded = " + scalePercentageRounded);
-		$.writeln("THEFILEPRE = " + myLinkcurrentFolder + "\\" + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg');
-				var theFile = File(myLinkcurrentFolder + "\\" + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg');
-					$.writeln("theFile = " + theFile);
+				var theFilepre = myLinkCurrentFolder +  myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg';
+				var theFile = File(myLinkCurrentFolder + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg');
+				$.writeln("theFilepre = " +theFilepre);
+				$.writeln("theFile = " +theFile);
 		CreateBridgeTalkMessage(myLinkfp, myLinkName, scalePercentage);
 	} else {
 		alert("PPI higher than 300 already");
@@ -39,7 +40,7 @@ if (ppiH == ppiV) {
 function CreateBridgeTalkMessage(imagePath, myLinkName, scalePct) {
 	var bt = new BridgeTalk();
 	bt.target = "photoshop";
-	bt.body = ResaveInPS.toSource()+"("+imagePath.toSource()+ "," + myLinkName.toSource()+ "," + scalePct.toSource()+");";
+	bt.body = ResaveInPS.toSource()+"("+os.toSource()+ "," +imagePath.toSource()+ "," + myLinkName.toSource()+ "," + scalePct.toSource()+");";
 	bt.onError = function(errObj) {
 		}
 	bt.onResult = function(resObj) {
@@ -50,13 +51,15 @@ function CreateBridgeTalkMessage(imagePath, myLinkName, scalePct) {
 }
 
 //-----------------------------------------------
-function ResaveInPS(imagePath, myLinkName, scalePct) {
+function ResaveInPS(os, imagePath, myLinkName, scalePct) {
 	var psDoc;
 	app.displayDialogs = DialogModes.NO;
+	if (os == "MAC"){
+		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");}
+	var imagePathPSD = imagePath.replace(/([^\.]+$)/,"psd");
 	var startRulerUnits = app.preferences.rulerUnits;
 	app.preferences.rulerUnits = Units.PERCENT;
-	psDoc = app.open(new File(imagePath));
-	var currentPath = psDoc.path;
+	psDoc = app.open(new File(imagePathPSD));
 	psdSaveOptions = new PhotoshopSaveOptions();
 		psdSaveOptions.layers = true;
 	jpgSaveOptions = new JPEGSaveOptions();
@@ -64,12 +67,11 @@ function ResaveInPS(imagePath, myLinkName, scalePct) {
 		jpgSaveOptions.formatOptions = FormatOptions.STANDARDBASELINE;
 		jpgSaveOptions.matte = MatteType.NONE;
 		jpgSaveOptions.quality = 12;
-	var outputFolder = decodeURI(currentPath.parent);
-	var saveFilePSD = File( outputFolder + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
-	var saveFileJPG = File( outputFolder + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
+	var saveFilePSD = File( psDoc.path + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
+	var saveFileJPG = File( psDoc.path + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
 	psDoc.resizeImage(Number(scalePct), null, 300, ResampleMethod.BICUBICAUTOMATIC);
-	psDoc.saveAs(saveFileJPG, jpgSaveOptions, true, Extension.LOWERCASE);
 	psDoc.saveAs(saveFilePSD, psdSaveOptions, true, Extension.LOWERCASE);
+	psDoc.saveAs(saveFileJPG, jpgSaveOptions, true, Extension.LOWERCASE);
 	psDoc.close(SaveOptions.DONOTSAVECHANGES);
 	app.open(saveFilePSD);
 	app.preferences.rulerUnits = startRulerUnits;
