@@ -49,11 +49,9 @@ function CreateBridgeTalkMessage(imagePath, myLinkName)
 	bt.target = "photoshop";
 	bt.body = OpenInPS.toSource()+"("+os.toSource()+ "," +imagePath.toSource()+ "," + myLinkName.toSource()+ ");";
 	bt.onError = function(errObj) {
-		$.writeln(errObj.body)
-	}
+		$.writeln(errObj.body)}
 	bt.onResult = function(resObj) {
-		$.writeln(resObj.body)
-	}
+		$.writeln(resObj.body)}
 	bt.send(30);
 }
 
@@ -65,5 +63,13 @@ function OpenInPS(os, imagePath, myLinkName){
 		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");}
 	var imagePathPSD = imagePath.replace(/([^\.]+$)/,"psd");
 	$.writeln("imagePathPSD = "+imagePathPSD);
-	psDoc = app.open(new File(imagePathPSD));
+	var psDoc = File(imagePathPSD);
+	if (psDoc.exists){
+		app.open(psDoc);
+		alert("opened = " +imagePathPSD);}
+	else {
+		origExt = imagePath.match(/[^\.]+$/);
+		$.writeln("origExt = "+origExt);
+		alert(myLinkName + ".psd does not exist, opening " +myLinkName + "." + origExt + " instead");
+		psDoc = app.open(new File(imagePath));}
 	}
