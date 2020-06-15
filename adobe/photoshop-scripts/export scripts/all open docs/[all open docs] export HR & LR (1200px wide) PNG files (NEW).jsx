@@ -24,14 +24,14 @@ var CurrentPath = activeDocument.path;
 var folderPNG = Folder(CurrentPath + "/PNG");
 //=============Check if it exist, if not create it.============//
 if(!folderPNG.exists) folderPNG.create();
- 
+
 var HRdoc = app.activeDocument
-var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];  
+var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 var saveFile = File(CurrentPath +"/PNG/"+ docName + "_HR.png");
 
 
 ////-----converts to RGB--------------////
-//app.activeDocument.convertProfile("Working RGB", Intent.RELATIVECOLORIMETRIC, true, true ); 
+//app.activeDocument.convertProfile("Working RGB", Intent.RELATIVECOLORIMETRIC, true, true );
 
 savePNG_HR();
 function savePNG_HR() {
@@ -77,17 +77,17 @@ alert(((time2-time1)/1000)+" seconds ")
 
 ////// function save HR jpeg //////
 function SavePNG(saveFile, jpegQuality){
-    var pngOpts = new ExportOptionsSaveForWeb(); 
-  //  pngOpts.embedColorProfile = true;  
-  //  pngOpts.formatOptions = FormatOptions.STANDARDBASELINE;  
-  //  pngOpts.matte = MatteType.NONE;  
-  //  pngOpts.quality = 12;  
+    var pngOpts = new ExportOptionsSaveForWeb();
+  //  pngOpts.embedColorProfile = true;
+  //  pngOpts.formatOptions = FormatOptions.STANDARDBASELINE;
+  //  pngOpts.matte = MatteType.NONE;
+  //  pngOpts.quality = 12;
 
         pngOpts.format = SaveDocumentType.PNG;
         pngOpts.PNG8 = false;
         pngOpts.quality = 100;
     //pngOpts.compression = 9;
-    activeDocument.exportDocument(saveFile, ExportType.SAVEFORWEB, pngOpts);  
+    activeDocument.exportDocument(saveFile, ExportType.SAVEFORWEB, pngOpts);
 }
 
 
@@ -101,7 +101,7 @@ function savePNG_LR() {
     HRdoc.close(SaveOptions.DONOTSAVECHANGES)
 
 
-    LRdoc.resizeImage( 800, null, null, ResampleMethod.AUTOMATIC );
+    LRdoc.resizeImage( 1200, null, null, ResampleMethod.AUTOMATIC );
     displayDialogs = DialogModes.NO;
     SavePNG(saveFile);
     LRdoc.close(SaveOptions.DONOTSAVECHANGES)
