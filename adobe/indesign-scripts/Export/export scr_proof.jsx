@@ -14,7 +14,7 @@ catch(err){
 $.writeln("jobFolder = " +jobFolder);
 
 
-RGBScrProoftoJobFolder();  // export scr proof to job folder
+cmykScrProoftoJobFolder();  // export scr proof to job folder
 
 //If the active document has been changed since it was last saved, save it.
 if (app.activeDocument.modified == true){
@@ -22,17 +22,17 @@ if (app.activeDocument.modified == true){
 
 
 var time2 = Number(timeString());
-alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + "exported: " + docName + "_RGB-scr-proof.pdf");
+alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + "exported: " + docName + "_scr-proof.pdf");
 
 
 
 
 //=======================functions========================
 //////function to export screen proof to job folder///////////
-function RGBScrProoftoJobFolder(){
+function cmykScrProoftoJobFolder(){
   var myDocument = app.documents.item(0);
-  var myPDFExportPreset = app.pdfExportPresets.item("Screen Proof RGB");
-  myDocument.exportFile(ExportFormat.pdfType, File(jobFolder + "/" + docName + "_RGB-scr-proof.pdf"), false, myPDFExportPreset);}
+	var myPDFExportPreset = app.pdfExportPresets.item("Screen Proof CMYK");
+  myDocument.exportFile(ExportFormat.pdfType, File(jobFolder + "/" + docName + "_scr-proof.pdf"), false, myPDFExportPreset);}
 
 
 ////// function to get the current time //////

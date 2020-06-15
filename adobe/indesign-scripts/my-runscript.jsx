@@ -1,16 +1,10 @@
 // DESCRIPTION: Launch a script by typing its name or picking it from a recent-history list
 // Peter Kahrel -- www.kahrel.plus.com
-$.writeln("----------------------------");
+$.writeln("--------------------------------------------");
 (function () {
 
 	var runscript = {};
-	runscript.script_dir = scriptPath().path;
-	$.writeln("script dir = " + runscript.script_dir);
-//	runscript.script_dir = "/e/Projects/Scripts/test";
-//	var re = new RegExp(runscript.script_dir);
-//	$.writeln(re);
-//    "/e/Projects/Scripts/adobe/indesign-scripts"
-	$.writeln("runscript.script_dir = " + runscript.script_dir)
+	runscript.script_dir = "/e/Projects/Scripts/adobe/indesign-scripts";
 	runscript.history = get_history();
 	runscript.history.recentScripts = removeDeletedItems (runscript.history.recentScripts);
 
@@ -30,18 +24,14 @@ $.writeln("----------------------------");
 
 	function get_scripts (dir, list, level) {
 		var f = dir.getFiles ('*.*');
-
 		for (var i = 0; i < f.length; i++) {
-
 			if (f[i] instanceof Folder && !/^\./.test(f[i].name)) {
 				get_scripts (f[i], list, level+1);
-						} else if (/\.jsx?(bin)?/.test(f[i])) {
+			} else if (/\.jsx?(bin)?/.test(f[i])) {
 				//$.bp(f[i].name === 'index_show.jsx')
-		//		prefix = level > 1 ? f[i].parent.name.replace(/^.+\//,'/') : '';
-				prefix = (level > 1) ? f[i].parent.name + '/' : ''; //FIX THIS LINE HERE - Conditional (Ternary) Operator
-
-			//	list.push (decodeURI (prefix + f[i]));
-			list.push (decodeURI (prefix + f[i].name));
+				//prefix = level > 1 ? f[i].parent.name.replace(/^.+\//,'/') : '';
+				prefix = level > 1 ? f[i].parent.name + '/' : '';
+				list.push (decodeURI (prefix + f[i].name));
 			}
 		}
 		return list;
@@ -136,14 +126,12 @@ $.writeln("----------------------------");
 
 			w.main = w.add ('group {orientation: "column"}');
 				var entry = w.main.add ('edittext', undefined, droplist[0]);
-					entry.minimumSize.width = 600;
+					entry.minimumSize.width = 300;
 				list = w.main.add ('listbox', undefined, droplist);
 					list.preferredSize = [600, 350];
 					list.selection = 0;
 
-				var options = w.main.add ('group {alignment: "left"}');
-				var filter_check = options.add ('checkbox {text: "Filter list"}');
-				var applyFilterOnNextRun = options.add ('checkbox {text: "Apply filter on next run"}');
+
 
 			w.buttons = w.add ('group {orientation: "column", alignChildren: "fill"}');
 				w.buttons.add ('button', undefined, 'Run', {name: 'OK'});
@@ -153,8 +141,14 @@ $.writeln("----------------------------");
 				w.show_folder = w.buttons.add ('button', undefined, 'Folder');
 				w.delete_button = w.buttons.add ('button', undefined, 'Delete');
 
+				var options = w.main.add ('group {alignment: "left"}');
+				var filter_check = options.add ('group {text: "Filter list"}');
+				var applyFilterOnNextRun = options.add ('group {text: "Apply filter on next run"}');
+
 			applyFilterOnNextRun.value = runscript.history.applyFilterOnNextRun;
 			filter_check.value = runscript.history.filter_check;
+			$.writeln("applyFilterOnNextRun.value = "+applyFilterOnNextRun.value);
+			$.writeln("filter_check.value = "+filter_check.value);
 
 			w.show_folder.onClick = function () {
 				Folder(runscript.script_dir).execute();
@@ -203,11 +197,17 @@ $.writeln("----------------------------");
 				// in the list that matches what we type
 				filter = entry.text;
 				filterRE = RegExp (filter, 'i')
+			//	filterXX = filterRE.replace(/" "/, "(?:\\b|_).*?(?:\\b|_)")
+				filterZZ = RegExp ("^.*?(?:\\b|_)shitty(?:\\b|_).*?(?:\\b|_)proof(?:\\b|_).*?$")
+				$.writeln("filterZZ =" + filterZZ);
+			//	$.writeln("filterXX =" + filterXX);
+
 				if (filter_check.value) {
 					var temp = [];
+					$.writeln("filterRE =" + filterRE);
 					for (i = 0; i < droplist.length; i++) {
 						//if (droplist[i].toLowerCase().indexOf (filter.toLowerCase()) > -1 || droplist[i].slice (0,3) === '---') {
-						if (filterRE.test (droplist[i])) {
+						if (filterZZ.test (droplist[i])) {
 							temp.push (droplist[i]);
 						}
 					}
@@ -249,13 +249,12 @@ $.writeln("----------------------------");
 			}
 
 			var script = list.selection.text;
-			$.writeln("list.selection = " + list.selection);
 			var obj = {
 				location: [w.location.x, w.location.y],
 				lastScript: script,
 				filter: filter,
-				applyFilterOnNextRun: applyFilterOnNextRun.value,
-				filter_check: filter_check.value
+				applyFilterOnNextRun: false,
+				filter_check: true
 			}
 			store_history (obj);
 			return File (runscript.script_dir + '/' + script);
@@ -264,9 +263,7 @@ $.writeln("----------------------------");
 
 	try {
 		var script = get_a_script();
-		$.writeln("script = " + script);
 		app.doScript (script);
-		$.writeln(" ");
 	} catch (e) {
 		alert (e.message + "\r(line " + e.line + ")");
 	}

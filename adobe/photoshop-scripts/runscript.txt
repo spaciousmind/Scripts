@@ -1,1 +1,1 @@
-({location:[743, 280], lastScript:"ArtBoards To Files.jsx", filter:"", applyFilterOnNextRun:false, filter_check:false, recentScripts:["ArtBoards To Files.jsx"]})
+({location:[64, 162], lastScript:"Fit Image.jsx", filter:"", applyFilterOnNextRun:false, filter_check:false, recentScripts:["Fit Image.jsx", "ArtBoards To Files.jsx"]})
