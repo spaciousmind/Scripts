@@ -14,13 +14,18 @@ var w = new Window ('dialog', 'Script launcher', undefined, {closeButton: false}
 
     filter = "blah blah blah";
     filterRE = RegExp (filter, 'i')
-    pattern = RegExp ("(?:\\b|_).*?(?:\\b|_)")
-    patternZ = "(?:\\b|_).*?(?:\\b|_)"
-    var result = pattern.test(filterRE)
-    $.writeln("result =" + result);
+    patternStart = "^(?=.*"
+    patternMiddle = ")(?=.*"
+    patternEnd = ").*$"
+//    var result = patternMiddle.test(filterRE)
+//    $.writeln("result =" + result);
+  //  filter.match(/^(.),(.)$/);
+    var filter = filter.replace(/^(.)/g, patternStart + '$1');
+    var filter = filter.r
+    eplace(/(.)$/g, '$1' + patternEnd);
     if (RegExp (" ").test(filterRE)){
       $.writeln("YES")
-      var filterXX = filter.replace(/( )/g, patternZ);
+      var filterXX = filter.replace(/( )/g, patternMiddle);
 //  filterXX = filterRE.replace(/" "/, "(?:\\b|_).*?(?:\\b|_)")
       $.writeln("filterXX =" + filterXX);
     }

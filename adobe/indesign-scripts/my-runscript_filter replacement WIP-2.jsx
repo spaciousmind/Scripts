@@ -196,21 +196,23 @@ $.writeln("--------------------------------------------");
 				// If filter_check is false, we leave the list for what it is and select the first entry
 				// in the list that matches what we type
 				filter = entry.text;
-				filterRE = RegExp (filter, 'gi')
-				pattern = "(?:\\b|_).*?(?:\\b|_)"
+				filterRE = RegExp (filter, 'i')
+				pattern = RegExp ("(?:\\b|_).*?(?:\\b|_)")
 				//var result = pattern.test(filterRE)
 				//$.writeln("result =" + result);
 				if (RegExp (" ").test(filterRE)){
 					$.writeln("YES")
-					filterXX = filter.replace(/( )/, pattern)
-					filterXXRE = RegExp (filterXX, 'gi');
+					filterXX = filter.replace(/( )/g, pattern)
+					filterXXRE = RegExp (filterXX, 'i');
 			//		filterXX = filterRE.replace(/" "/, "(?:\\b|_).*?(?:\\b|_)")
 				  $.writeln("filterXX =" + filterXX);
 					 $.writeln("filterXXRE =" + filterXXRE);
 				}
 
-				//filterZZ = RegExp ("^.*?(?:\\b|_)shitty(?:\\b|_).*?(?:\\b|_)proof(?:\\b|_).*?$")
-				//$.writeln("filterZZ =" + filterZZ);
+	//			filterZZ = RegExp ("^.*?(?:\\b|_)shitty(?:\\b|_).*?(?:\\b|_)proof(?:\\b|_).*?$")
+				filterZZ = RegExp ("shitty(?:\\b|_).*?(?:\\b|_)proof")
+
+				$.writeln("filterZZ =" + filterZZ);
 
 
 				if (filter_check.value) {
@@ -218,7 +220,7 @@ $.writeln("--------------------------------------------");
 					$.writeln("filterRE =" + filterRE);
 					for (i = 0; i < droplist.length; i++) {
 						//if (droplist[i].toLowerCase().indexOf (filter.toLowerCase()) > -1 || droplist[i].slice (0,3) === '---') {
-						if (filterXXRE.test (droplist[i])) {
+						if (filterZZ.test (droplist[i])) {
 							temp.push (droplist[i]);
 						}
 					}
