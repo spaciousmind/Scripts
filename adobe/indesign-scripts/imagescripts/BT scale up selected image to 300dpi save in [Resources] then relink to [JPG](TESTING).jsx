@@ -3,6 +3,7 @@
 $.writeln("=======================================================");
 os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC" : "WINDOWS";
 var doc = app.activeDocument;
+var myChar = "»"
 var myImage = app.selection[0].images[0];
 var myLink = app.selection[0].graphics[0].itemLink;
 var myLinkfp = myLink.filePath;
@@ -18,6 +19,7 @@ effectivePPI.match(/(\d+),(\d+)/);
 var ppiH = effectivePPI.replace(/(\d+),(\d+)/, '$1');
 var ppiV = effectivePPI.replace(/(\d+),(\d+)/, '$2');
 
+$.writeln("myChar = " +myChar);
 $.writeln("myLinkResourcesFolder = " +myLinkResourcesFolder);
 $.writeln("myLinkCurrentFolder = " +myLinkCurrentFolder);
 $.writeln("myLinkName = " +myLinkName);
@@ -44,7 +46,7 @@ if (ppiH == ppiV) {
 function CreateBridgeTalkMessage(imagePath, myLinkName, scalePct) {
 	var bt = new BridgeTalk();
 	bt.target = "photoshop";
-	bt.body = ResaveInPS.toSource()+"("+os.toSource()+ "," +myLinkResourcesFolder.toSource()+ "," +imagePath.toSource()+ "," + myLinkName.toSource()+ "," + scalePct.toSource()+");";
+	bt.body = ResaveInPS.toSource()+"("+os.toSource()+ "," +myLinkResourcesFolder.toSource()+ "," +imagePath.toSource()+ "," + myLinkName.toSource()+ "," + scalePct.toSource()+ "," + myChar.toSource()+ ");";
 	bt.onError = function(errObj) {
 		$.writeln(errObj.body)}
 	bt.onResult = function(resObj) {
@@ -55,39 +57,23 @@ function CreateBridgeTalkMessage(imagePath, myLinkName, scalePct) {
 }
 
 //-----------------------------------------------
-function ResaveInPS(os, resourcesFolder, imagePath, myLinkName, scalePct) {
+function ResaveInPS(os, resourcesFolder, imagePath, myLinkName, scalePct, myChar) {
 	$.writeln("-------------------------------------------------------");
 	var psDoc;
+	$.writeln("myChar = " +myChar);
 	app.displayDialogs = DialogModes.NO;
+	$.writeln("imagePathOriginal = " + imagePath);
+	var decoded = decodeURI(imagePath);
+	var encoded = encodeURI(imagePath);
+	var decoded2 = decodeURI(encoded);
+	$.writeln("»");
+	$.writeln("decoded = " + decoded);
+	$.writeln("encoded = " + encoded);
+		$.writeln("decoded2 = " + decoded2);
 	if (os == "MAC"){
-		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");}
+		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");
+		$.writeln("mac");
+		$.writeln("imagePath = " + imagePath);}
 	var imagePathPSD = imagePath.replace(/([^\.]+$)/,"psd");
-	var startRulerUnits = app.preferences.rulerUnits;
-	app.preferences.rulerUnits = Units.PERCENT;
-	$.writeln("imagePath = " + imagePath);
-	psDoc = File(imagePathPSD);
-	if (psDoc.exists){
-		psDoc = app.open(psDoc);
-		$.writeln("opened =" +imagePathPSD);}
-	else{
-		origExt = imagePath.match(/[^\.]+$/);
-		$.writeln(myLinkName + ".psd does not exist, opening " +myLinkName + "." + origExt + " instead");
-		psDoc = app.open(new File(imagePath));}
-		var currentPath = psDoc.path;
-	psdSaveOptions = new PhotoshopSaveOptions();
-		psdSaveOptions.layers = true;
-	jpgSaveOptions = new JPEGSaveOptions();
-		jpgSaveOptions.embedColorProfile = true;
-		jpgSaveOptions.formatOptions = FormatOptions.STANDARDBASELINE;
-		jpgSaveOptions.matte = MatteType.NONE;
-		jpgSaveOptions.quality = 12;
-	var saveFilePSD = File(resourcesFolder + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
-	var saveFileJPG = File(resourcesFolder + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
-	psDoc.resizeImage(Number(scalePct), null, 300, ResampleMethod.BICUBICAUTOMATIC);
-	psDoc.saveAs(saveFileJPG, jpgSaveOptions, true, Extension.LOWERCASE);
-	psDoc.saveAs(saveFilePSD, psdSaveOptions, true, Extension.LOWERCASE);
-	psDoc.close(SaveOptions.DONOTSAVECHANGES);
-	app.open(saveFilePSD);
-	app.preferences.rulerUnits = startRulerUnits;
-	app.displayDialogs = DialogModes.ALL;
+	$.writeln("imagePathPSD = " + imagePathPSD);
 }

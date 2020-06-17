@@ -98,7 +98,7 @@ function getNewNameAI()
 function getAIOptions()
 {
 	var illustratorSaveOpts = new IllustratorSaveOptions();
-	illustratorSaveOpts.pdfCompatible = false;
+	illustratorSaveOpts.pdfCompatible = true;
 
 	return illustratorSaveOpts;
 
