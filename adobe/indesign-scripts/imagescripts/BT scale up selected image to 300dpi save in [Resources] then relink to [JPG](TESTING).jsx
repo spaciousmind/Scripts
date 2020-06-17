@@ -66,6 +66,8 @@ function ResaveInPS(os, resourcesFolder, imagePath, myLinkName, scalePct, myChar
 	var decoded = decodeURI(imagePath);
 	var encoded = encodeURI(imagePath);
 	var decoded2 = decodeURI(encoded);
+	var n = String.fromCharCode(0x00BB);
+	$.writeln("n = " + n);
 	$.writeln("»");
 	$.writeln("decoded = " + decoded);
 	$.writeln("encoded = " + encoded);
