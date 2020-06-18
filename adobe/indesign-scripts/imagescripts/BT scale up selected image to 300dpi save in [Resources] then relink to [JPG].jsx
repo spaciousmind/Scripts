@@ -59,12 +59,19 @@ function ResaveInPS(os, resourcesFolder, imagePath, myLinkName, scalePct) {
 	$.writeln("-------------------------------------------------------");
 	var psDoc;
 	app.displayDialogs = DialogModes.NO;
+	var stupidChar = String.fromCharCode(0x00BB);
+	$.writeln("stupidChar = " + stupidChar);
 	if (os == "MAC"){
-		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");}
+		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:" +stupidChar+ " ");
+		var resourcesFolder = resourcesFolder.replace(/(^.*)(\u00BB.)/, "WIP:" +stupidChar+ " ");
+		var seperator = ":";}
+	else {
+		var seperator = "/";}
 	var imagePathPSD = imagePath.replace(/([^\.]+$)/,"psd");
 	var startRulerUnits = app.preferences.rulerUnits;
 	app.preferences.rulerUnits = Units.PERCENT;
 	$.writeln("imagePath = " + imagePath);
+	$.writeln("resourcesFolder = " + resourcesFolder);
 	psDoc = File(imagePathPSD);
 	if (psDoc.exists){
 		psDoc = app.open(psDoc);
@@ -81,8 +88,10 @@ function ResaveInPS(os, resourcesFolder, imagePath, myLinkName, scalePct) {
 		jpgSaveOptions.formatOptions = FormatOptions.STANDARDBASELINE;
 		jpgSaveOptions.matte = MatteType.NONE;
 		jpgSaveOptions.quality = 12;
-	var saveFilePSD = File(resourcesFolder + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
-	var saveFileJPG = File(resourcesFolder + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
+	$.writeln("saveFilePSD = " +resourcesFolder + seperator + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
+	$.writeln("saveFileJPG = " +resourcesFolder + seperator + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
+	var saveFilePSD = File(resourcesFolder + seperator + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
+	var saveFileJPG = File(resourcesFolder + seperator + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
 	psDoc.resizeImage(Number(scalePct), null, 300, ResampleMethod.BICUBICAUTOMATIC);
 	psDoc.saveAs(saveFileJPG, jpgSaveOptions, true, Extension.LOWERCASE);
 	psDoc.saveAs(saveFilePSD, psdSaveOptions, true, Extension.LOWERCASE);
