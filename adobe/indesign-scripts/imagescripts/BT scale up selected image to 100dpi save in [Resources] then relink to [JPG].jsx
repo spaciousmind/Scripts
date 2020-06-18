@@ -6,10 +6,14 @@ var doc = app.activeDocument;
 var myImage = app.selection[0].images[0];
 var myLink = app.selection[0].graphics[0].itemLink;
 var myLinkfp = myLink.filePath;
+
 if (os == "MAC"){
+	var seperator = ":";
 	var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\:])/)[1];}
 else{
+	var seperator = "/";
 	var myLinkCurrentFolder = myLink.filePath.match(/^(.*[\\])/)[1];}
+
 var myLinkResourcesFolder = myLink.filePath.match(/(.*\d\d\d\d\d Resources)/)[1];
 var myLinkName = myLink.name.match(/(.*)(\.[^\.]+)/)[1];
 var myLinkFullName = myLink.name;
@@ -26,19 +30,14 @@ if (ppiH == ppiV) {
 	if (ppiH < 100) {
 		var scalePercentage = ((100 - ppiH) / ppiH) * 100 + 100;
 		var scalePercentageRounded = Math.round(scalePercentage);
-			$.writeln("scalePercentage = " + scalePercentage);
-			$.writeln("scalePercentageRounded = " + scalePercentageRounded);
-	if (os == "MAC"){
-		var theFile = File(myLinkResourcesFolder + "\:" + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg');}
-	else {
-		var theFile = File(myLinkResourcesFolder + "\\" + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg');}
+		$.writeln("scalePercentage = " + scalePercentage);
+		$.writeln("scalePercentageRounded = " + scalePercentageRounded);
+		var theFile = File(myLinkResourcesFolder + seperator + myLinkName + '_upscaled_' + Math.round(scalePercentage) + '-pct.jpg');
 		CreateBridgeTalkMessage(myLinkfp, myLinkName, scalePercentage);
 	} else {
-		alert("PPI higher than 100 already");
-	}
+		alert("PPI higher than 100 already");	}
 } else {
-	alert("Horizontal and vertical resolutions are not the same.");
-}
+	alert("Horizontal and vertical resolutions are not the same.");}
 
 //---------------------FUNCTIONS-----------------
 function CreateBridgeTalkMessage(imagePath, myLinkName, scalePct) {
@@ -60,7 +59,12 @@ function ResaveInPS(os, resourcesFolder, imagePath, myLinkName, scalePct) {
 	var psDoc;
 	app.displayDialogs = DialogModes.NO;
 	if (os == "MAC"){
-		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:» ");}
+		var stupidChar = String.fromCharCode(0x00BB);
+		var imagePath = imagePath.replace(/(^.*)(\u00BB.)/, "WIP:" +stupidChar+ " ");
+		var resourcesFolder = resourcesFolder.replace(/(^.*)(\u00BB.)/, "WIP:" +stupidChar+ " ");
+		var seperator = ":";}
+	else {
+		var seperator = "/";}
 	var imagePathPSD = imagePath.replace(/([^\.]+$)/,"psd");
 	var startRulerUnits = app.preferences.rulerUnits;
 	app.preferences.rulerUnits = Units.PERCENT;
@@ -80,8 +84,8 @@ function ResaveInPS(os, resourcesFolder, imagePath, myLinkName, scalePct) {
 		jpgSaveOptions.formatOptions = FormatOptions.STANDARDBASELINE;
 		jpgSaveOptions.matte = MatteType.NONE;
 		jpgSaveOptions.quality = 12;
-	var saveFilePSD = File(resourcesFolder + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
-	var saveFileJPG = File(resourcesFolder + "/" + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
+	var saveFilePSD = File(resourcesFolder + seperator + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.psd');
+	var saveFileJPG = File(resourcesFolder + seperator + myLinkName + '_upscaled_' + Math.round(scalePct) + '-pct.jpg');
 	psDoc.resizeImage(Number(scalePct), null, 100, ResampleMethod.BICUBICAUTOMATIC);
 	psDoc.saveAs(saveFileJPG, jpgSaveOptions, true, Extension.LOWERCASE);
 	psDoc.saveAs(saveFilePSD, psdSaveOptions, true, Extension.LOWERCASE);
