@@ -1,26 +1,26 @@
-﻿var time1 = Number(timeString());
+var time1 = Number(timeString());
 
-myDocument = app.documents.item(0);
-var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 
-var currentPath = myDocument.filePath;
-var parentFolder = decodeURI(currentPath.parent);
+for (var i=0; i < app.documents.length; i++){
+
+myDocument = app.documents.item(i);
+var docName = myDocument.name.match(/(.*)(\.[^\.]+)/)[1];
+$.writeln(docName);
 var printerPath = "~/Desktop/HOLD/";
-
-
+var currentPath = myDocument.filePath;
 
 sendHR_trims();  //script to send hr proof to printer
 exportHR_trims();  // export scr proof to parent folder
 
 //If the active document has been changed since it was last saved, save it.
 if(app.activeDocument.modified == true){
-               app.activeDocument.save();
-           }
+               app.activeDocument.save();}
+}
+
+
 
 
 var time2 = Number(timeString());
-
-
 alert(Math.round((time2-time1)/1000) +" seconds")
 
 
@@ -29,7 +29,7 @@ alert(Math.round((time2-time1)/1000) +" seconds")
 //<snippet>
 function sendHR_trims(){
 	//<fragment>
-    var myDocument = app.documents.item(0);
+  //  var myDocument = app.documents.item(0);
     var myPDFExportPreset = app.pdfExportPresets.item("Inferno Print File 2");
 
     myDocument.exportFile(
@@ -45,7 +45,7 @@ function sendHR_trims(){
 //<snippet>
 function exportHR_trims(){
 	//<fragment>
-    var myDocument = app.documents.item(0);
+//    var myDocument = app.documents.item(0);
 	  var myPDFExportPreset = app.pdfExportPresets.item("Inferno Print File 2");
 
     myDocument.exportFile(

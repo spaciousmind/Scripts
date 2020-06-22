@@ -14,18 +14,9 @@ mySnippet2();
 // mySnippet3();
 
 
-//If the active document has been changed since it was last saved, save it. 
+//If the active document has been changed since it was last saved, save it.
 if(app.activeDocument.modified == true){
-               app.activeDocument.save();
-           }
-
-
-
-
-
-
-
-
+               app.activeDocument.save();}
 }
 
 
@@ -45,18 +36,18 @@ function mySnippet(){
 	//Format as (use either the ExportFormat.pdfType enumeration
 	//or the string "Adobe PDF")
 	//To as File
-	//ShowingOptions as boolean (setting this option to true displays the 
+	//ShowingOptions as boolean (setting this option to true displays the
 	//PDF Export dialog box)
-	//Using as PDF export preset (or a string that is the name of a 
+	//Using as PDF export preset (or a string that is the name of a
 	//PDF export preset)
 	//The default PDF export preset names are surrounded by square breackets
 	//(e.g., "[High Quality Print], [Press Quality], or [Smallest File Size]").
 	var myPDFExportPreset = app.pdfExportPresets.item("Inferno Print File 2");
-    
+
     myDocument.exportFile(
 		ExportFormat.pdfType,
 		File(CurrentPath + "/" + docName + "_HR_trims.pdf"),
-		false, 
+		false,
 		myPDFExportPreset
 	);
     //</fragment>
@@ -73,18 +64,18 @@ function mySnippet2(){
 	//Format as (use either the ExportFormat.pdfType enumeration
 	//or the string "Adobe PDF")
 	//To as File
-	//ShowingOptions as boolean (setting this option to true displays the 
+	//ShowingOptions as boolean (setting this option to true displays the
 	//PDF Export dialog box)
-	//Using as PDF export preset (or a string that is the name of a 
+	//Using as PDF export preset (or a string that is the name of a
 	//PDF export preset)
 	//The default PDF export preset names are surrounded by square breackets
 	//(e.g., "[High Quality Print], [Press Quality], or [Smallest File Size]").
 	var myPDFExportPreset = app.pdfExportPresets.item("Screen Proof CMYK");
-    
+
     myDocument.exportFile(
 		ExportFormat.pdfType,
 		File(CurrentPath + "/" + docName + "_CMYK-scr-proof.pdf"),
-		false, 
+		false,
 		myPDFExportPreset
 	);
     //</fragment>
