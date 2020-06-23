@@ -6,6 +6,7 @@ var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 var currentPath = myDocument.filePath;
 var parentFolder = decodeURI(currentPath.parent);
 var printerPath = "~/Desktop/HOLD/";
+app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 
 

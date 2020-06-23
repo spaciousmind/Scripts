@@ -1,7 +1,9 @@
 var time1 = Number(timeString());
+
 myDocument = app.documents.item(0);
 var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 var currentPath = decodeURI(myDocument.filePath);
+app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 
 try{ //check for job folder, if none then set it to current folder

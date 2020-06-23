@@ -4,6 +4,7 @@ myDocument = app.documents.item(0);
 var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 var currentPath = decodeURI(myDocument.filePath);
 var printerPath = "~/Desktop/HOLD/";
+app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 
 try{ //check for job folder, if none then set it to current folder

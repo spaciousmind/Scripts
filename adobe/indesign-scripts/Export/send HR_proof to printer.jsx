@@ -3,7 +3,7 @@ myDocument = app.documents.item(0);
 var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 var currentPath = decodeURI(myDocument.filePath);
 var printerPath = "~/Desktop/HOLD/";
-
+app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 sendHRProoftoPrinter();  //script to send hr proof to printer
 

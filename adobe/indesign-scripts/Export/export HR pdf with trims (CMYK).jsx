@@ -4,6 +4,7 @@ myDocument = app.documents.item(0);
 var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 
 var CurrentPath = myDocument.filePath;
+app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 
 mySnippet();

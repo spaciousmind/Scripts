@@ -1,1 +1,40 @@
-﻿myDocument = app.documents.item(0);var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];var CurrentPath = myDocument.filePath;mySnippet();//If the active document has been changed since it was last saved, save it. if(app.activeDocument.modified == true){               app.activeDocument.save();           }//<snippet>function mySnippet(){	//<fragment>    var myDocument = app.documents.item(0);	//The document.export parameters are:	//Format as (use either the ExportFormat.pdfType enumeration	//or the string "Adobe PDF")	//To as File	//ShowingOptions as boolean (setting this option to true displays the 	//PDF Export dialog box)	//Using as PDF export preset (or a string that is the name of a 	//PDF export preset)	//The default PDF export preset names are surrounded by square breackets	//(e.g., "[High Quality Print], [Press Quality], or [Smallest File Size]").	var myPDFExportPreset = app.pdfExportPresets.item("RGB HR file");        myDocument.exportFile(		ExportFormat.pdfType,		File(CurrentPath + "/" + docName + "_RGB_HR.pdf"),		false, 		myPDFExportPreset	);    //</fragment>}//</snippet>
+﻿
+myDocument = app.documents.item(0);
+var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
+
+var CurrentPath = myDocument.filePath;
+app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
+
+mySnippet();
+
+//If the active document has been changed since it was last saved, save it.
+if(app.activeDocument.modified == true){
+               app.activeDocument.save();
+           }
+
+
+//<snippet>
+function mySnippet(){
+	//<fragment>
+    var myDocument = app.documents.item(0);
+	//The document.export parameters are:
+	//Format as (use either the ExportFormat.pdfType enumeration
+	//or the string "Adobe PDF")
+	//To as File
+	//ShowingOptions as boolean (setting this option to true displays the
+	//PDF Export dialog box)
+	//Using as PDF export preset (or a string that is the name of a
+	//PDF export preset)
+	//The default PDF export preset names are surrounded by square breackets
+	//(e.g., "[High Quality Print], [Press Quality], or [Smallest File Size]").
+	var myPDFExportPreset = app.pdfExportPresets.item("RGB HR file");
+
+    myDocument.exportFile(
+		ExportFormat.pdfType,
+		File(CurrentPath + "/" + docName + "_RGB_HR.pdf"),
+		false,
+		myPDFExportPreset
+	);
+    //</fragment>
+}
+//</snippet>

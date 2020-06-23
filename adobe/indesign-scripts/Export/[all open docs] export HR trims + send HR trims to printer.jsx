@@ -8,6 +8,7 @@ var docName = myDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 $.writeln(docName);
 var printerPath = "~/Desktop/HOLD/";
 var currentPath = myDocument.filePath;
+app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 sendHR_trims();  //script to send hr proof to printer
 exportHR_trims();  // export scr proof to parent folder

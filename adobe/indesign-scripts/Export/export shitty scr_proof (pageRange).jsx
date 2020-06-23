@@ -1,8 +1,14 @@
-var time1 = Number(timeString());
+///edit this script to show page 1 to length of pagerange in document
 myDocument = app.documents.item(0);
+if (app.pdfExportPreferences.pageRange == null){
+  var myPageRange = prompt("Choose a Page Range to export", "1-2")}
+else{
+  var myPageRange = prompt("Choose a Page Range to export", app.pdfExportPreferences.pageRange)}
+
+var time1 = Number(timeString());
+
 var docName = app.activeDocument.name.match(/(.*)(\.[^\.]+)/)[1];
 var currentPath = decodeURI(myDocument.filePath);
-app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 
 try{ //check for job folder, if none then set it to current folder
@@ -21,25 +27,18 @@ if(app.activeDocument.modified == true){
 	}
 
 var time2 = Number(timeString());
-alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + "exported: " + docName + "_RGB-LR.pdf");
+alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + "exported: " + docName + "_" + myPageRange + "_LR.pdf");
 
 
 //=======================functions========================
 //////function to export shitty screen proof to job folder///////////
 function exportShittyScrProof(){
   var myDocument = app.documents.item(0);
-	var myPDFExportPreset = app.pdfExportPresets.item("shitty screen proof RGB");
-  myDocument.exportFile(ExportFormat.pdfType, File(jobFolder + "/" + docName + "_RGB-LR.pdf"), false, myPDFExportPreset);}
+	var myPDFExportPreset = app.pdfExportPresets.item("shitty screen proof CMYK");
+    app.pdfExportPreferences.pageRange = myPageRange;
+  myDocument.exportFile(ExportFormat.pdfType, File(jobFolder + "/" + docName + "_" + myPageRange + "_LR.pdf"), false, myPDFExportPreset);}
 
 
 function timeString (){
 	var now = new Date();
 	return now.getTime();}
-
-
-
-
-
-	var myPDFExportPreset = app.pdfExportPresets.item("shitty screen proof RGB");
-
-		File(CurrentPath + "/" + docName + "_RGB-LR.pdf"),
