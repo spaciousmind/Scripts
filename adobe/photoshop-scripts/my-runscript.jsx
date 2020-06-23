@@ -1,11 +1,11 @@
+
 // DESCRIPTION: Launch a script by typing its name or picking it from a recent-history list
 // Peter Kahrel -- www.kahrel.plus.com
 
 (function () {
 
 	var runscript = {};
-		runscript.script_dir = "/e/Projects/Scripts/adobe/photoshop-scripts";
-	//runscript.script_dir = scriptPath().path;
+	runscript.script_dir = "/e/Projects/Scripts/adobe/photoshop-scripts";
 	runscript.history = get_history();
 	runscript.history.recentScripts = removeDeletedItems (runscript.history.recentScripts);
 
@@ -129,12 +129,12 @@
 				var entry = w.main.add ('edittext', undefined, droplist[0]);
 					entry.minimumSize.width = 300;
 				list = w.main.add ('listbox', undefined, droplist);
-					list.preferredSize = [600, 350];
+					list.preferredSize = [800, 350];
 					list.selection = 0;
 
 				var options = w.main.add ('group {alignment: "left"}');
-//				var filter_check = options.add ('checkbox {text: "Filter list"}');
-//				var applyFilterOnNextRun = options.add ('checkbox {text: "Apply filter on next run"}');
+				var filter_check = options.add ('group {text: "Filter list"}');
+				var applyFilterOnNextRun = options.add ('group {text: "Apply filter on next run"}');
 
 			w.buttons = w.add ('group {orientation: "column", alignChildren: "fill"}');
 				w.buttons.add ('button', undefined, 'Run', {name: 'OK'});
@@ -144,8 +144,8 @@
 				w.show_folder = w.buttons.add ('button', undefined, 'Folder');
 				w.delete_button = w.buttons.add ('button', undefined, 'Delete');
 
-//			applyFilterOnNextRun.value = runscript.history.applyFilterOnNextRun;
-//			filter_check.value = runscript.history.filter_check;
+			applyFilterOnNextRun.value = runscript.history.applyFilterOnNextRun;
+			filter_check.value = runscript.history.filter_check;
 
 			w.show_folder.onClick = function () {
 				Folder(runscript.script_dir).execute();
@@ -192,13 +192,25 @@
 				// by creating a new list on every keypress.
 				// If filter_check is false, we leave the list for what it is and select the first entry
 				// in the list that matches what we type
+				patternStart = "(?=.*"
+				pattern = ")(?=.*"
+				patternEnd = ").*"
+
 				filter = entry.text;
-				filterRE = RegExp (filter, 'i')
+				filterRE = RegExp (filter, 'gi')
+				if (RegExp (" ").test(filterRE)){
+					filter = filter.replace(/( )/, pattern)}
+				filter = filter.replace(/$/, patternEnd)
+				filter = filter.replace(/^/, patternStart)
+				$.writeln("filter =" + filter);
+	filterREz = RegExp (filter, 'gi')
+					$.writeln("filterRE =" + filterRE);
+				$.writeln("filterREz =" + filterREz);
 				if (filter_check.value) {
 					var temp = [];
 					for (i = 0; i < droplist.length; i++) {
 						//if (droplist[i].toLowerCase().indexOf (filter.toLowerCase()) > -1 || droplist[i].slice (0,3) === '---') {
-						if (filterRE.test (droplist[i])) {
+						if (filterREz.test (droplist[i])) {
 							temp.push (droplist[i]);
 						}
 					}
@@ -244,8 +256,8 @@
 				location: [w.location.x, w.location.y],
 				lastScript: script,
 				filter: filter,
-				applyFilterOnNextRun: false,
-				filter_check: false
+				applyFilterOnNextRun: applyFilterOnNextRun.value,
+				filter_check: filter_check.value
 			}
 			store_history (obj);
 			return File (runscript.script_dir + '/' + script);
@@ -255,8 +267,8 @@
 	try {
 		var script = get_a_script();
 		var scriptFile = File(script);
-		alert(scriptFile);
-		$.evalFile (scriptFile);
+		$.writeln(scriptFile);
+		$.evalFile(scriptFile);
 	} catch (e) {
 		alert (e.message + "\r(line " + e.line + ")");
 	}

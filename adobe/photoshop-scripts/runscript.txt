@@ -1,1 +1,1 @@
-({location:[64, 162], lastScript:"Fit Image.jsx", filter:"", applyFilterOnNextRun:false, filter_check:false, recentScripts:["Fit Image.jsx", "ArtBoards To Files.jsx"]})
+({location:[410, 312], lastScript:"all open docs/[all open docs] flip canvas horizontally.jsx", filter:"", applyFilterOnNextRun:false, filter_check:true, recentScripts:["all open docs/[all open docs] flip canvas horizontally.jsx", "Fit Image.jsx", "export scripts/[all open docs] flip canvas horizontally.jsx", "Flatten All Layer Effects.jsx", "ArtBoards To Files.jsx"]})
