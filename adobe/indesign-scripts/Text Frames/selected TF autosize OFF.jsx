@@ -1,8 +1,5 @@
-if (parseFloat(app.version) < 6)
-main();
-else
 var undoName = "selected TF's autosizing off"
-    app.doScript(main, ScriptLanguage.JAVASCRIPT, undefined, UndoModes.FAST_ENTIRE_SCRIPT, undoName);
+app.doScript(main, ScriptLanguage.JAVASCRIPT, undefined, UndoModes.FAST_ENTIRE_SCRIPT, undoName);
 
 
 
@@ -18,7 +15,7 @@ for (var i=0; i < sel.length; i++){
 			mySelection.textFramePreferences.autoSizingReferencePoint =
 			AutoSizingReferenceEnum.TOP_LEFT_POINT;
 
-			mySelection.textFramePreferences.autoSizingType = 
+			mySelection.textFramePreferences.autoSizingType =
 			AutoSizingTypeEnum.OFF;
 
 
@@ -26,5 +23,3 @@ for (var i=0; i < sel.length; i++){
 }
 }
 }
-
-

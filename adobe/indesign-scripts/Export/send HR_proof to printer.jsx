@@ -13,7 +13,7 @@ if(app.activeDocument.modified == true){
   app.activeDocument.save();}
 
 var time2 = Number(timeString());
-alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + "exported: " + docName + "_scr-proof.pdf & HR_proof sent to printer");
+alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + docName + "HR_proof sent to printer");
 
 //=======================functions========================
 //////function to export HR_proof to printer///////////
