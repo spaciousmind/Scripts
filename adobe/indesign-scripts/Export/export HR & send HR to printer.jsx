@@ -10,7 +10,7 @@ app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 
 
-sendHR();  //script to send hr  to printer
+sendHR();  //script to send hr to printer
 exportHR();  // export hr to project folder
 
 //If the active document has been changed since it was last saved, save it.
@@ -22,14 +22,13 @@ if(app.activeDocument.modified == true){
 var time2 = Number(timeString());
 
 
-alert(Math.round((time2-time1)/1000) +" seconds")
+alert(Math.round((time2-time1)/1000) +" seconds"  +"\n\n" + "exported: " + "\n" + docName + "_HR.pdf" + "and sent" + "_HR.pdf" + "to printer");)
 
 
 
 
-//<snippet>
+
 function sendHR(){
-	//<fragment>
     var myDocument = app.documents.item(0);
     var myPDFExportPreset = app.pdfExportPresets.item("Inferno Print File (no trim marks)");
 
@@ -39,13 +38,11 @@ function sendHR(){
 		false,
 		myPDFExportPreset
 	);
-    //</fragment>
 }
-//</snippet>
 
-//<snippet>
+
+
 function exportHR(){
-	//<fragment>
     var myDocument = app.documents.item(0);
 	  var myPDFExportPreset = app.pdfExportPresets.item("Inferno Print File (no trim marks)");
 
@@ -55,9 +52,9 @@ function exportHR(){
 		false,
 		myPDFExportPreset
 	);
-    //</fragment>
+
 }
-//</snippet>
+
 
 ////// function to get the current time //////
 function timeString () {
