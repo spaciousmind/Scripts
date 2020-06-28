@@ -1,10 +1,15 @@
 // DESCRIPTION: Launch a script by typing its name or picking it from a recent-history list
 // Peter Kahrel -- www.kahrel.plus.com
-$.writeln("--------------------------------------------");
 (function () {
 
 	var runscript = {};
-	runscript.script_dir = "/e/Projects/Scripts/adobe/indesign-scripts";
+
+	os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC" : "WINDOWS";
+	if (os == "MAC"){
+		runscript.script_dir = "ENTER FILEPATH FOR MAC HERE";}
+	else{
+		runscript.script_dir = "/e/Projects/Scripts/adobe/indesign-scripts";}
+
 	runscript.history = get_history();
 	runscript.history.recentScripts = removeDeletedItems (runscript.history.recentScripts);
 
@@ -147,8 +152,6 @@ $.writeln("--------------------------------------------");
 
 			applyFilterOnNextRun.value = runscript.history.applyFilterOnNextRun;
 			filter_check.value = runscript.history.filter_check;
-			$.writeln("applyFilterOnNextRun.value = "+applyFilterOnNextRun.value);
-			$.writeln("filter_check.value = "+filter_check.value);
 
 			w.show_folder.onClick = function () {
 				Folder(runscript.script_dir).execute();
@@ -195,26 +198,13 @@ $.writeln("--------------------------------------------");
 				// by creating a new list on every keypress.
 				// If filter_check is false, we leave the list for what it is and select the first entry
 				// in the list that matches what we type
-				patternStart = "(?=.*"
-				pattern = ")(?=."
-				patternEnd = ").*"
-
 				filter = entry.text;
-		
-
-
-		//		filterRE = RegExp (filter, 'i')
-			//	filterXX = filterRE.replace(/" "/, "(?:\\b|_).*?(?:\\b|_)")
-			//	filterZZ = RegExp ("^.*?(?:\\b|_)shitty(?:\\b|_).*?(?:\\b|_)proof(?:\\b|_).*?$")
-			//	$.writeln("filterZZ =" + filterZZ);
-			//	$.writeln("filterXX =" + filterXX);
-
+				filterRE = RegExp (filter, 'i')
 				if (filter_check.value) {
 					var temp = [];
-			//		$.writeln("filterRE =" + filterRE);
 					for (i = 0; i < droplist.length; i++) {
 						//if (droplist[i].toLowerCase().indexOf (filter.toLowerCase()) > -1 || droplist[i].slice (0,3) === '---') {
-						if (filter.test (droplist[i])) {
+						if (filterRE.test (droplist[i])) {
 							temp.push (droplist[i]);
 						}
 					}

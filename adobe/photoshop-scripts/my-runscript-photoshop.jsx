@@ -5,7 +5,13 @@
 (function () {
 
 	var runscript = {};
-	runscript.script_dir = "/e/Projects/Scripts/adobe/photoshop-scripts";
+
+	os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC" : "WINDOWS";
+	if (os == "MAC"){
+		runscript.script_dir = "ENTER FILEPATH FOR MAC HERE";}
+	else{
+		runscript.script_dir = "/e/Projects/Scripts/adobe/photoshop-scripts";}
+
 	runscript.history = get_history();
 	runscript.history.recentScripts = removeDeletedItems (runscript.history.recentScripts);
 
@@ -192,25 +198,13 @@
 				// by creating a new list on every keypress.
 				// If filter_check is false, we leave the list for what it is and select the first entry
 				// in the list that matches what we type
-				patternStart = "(?=.*"
-				pattern = ")(?=.*"
-				patternEnd = ").*"
-
 				filter = entry.text;
-				filterRE = RegExp (filter, 'gi')
-				if (RegExp (" ").test(filterRE)){
-					filter = filter.replace(/( )/, pattern)}
-				filter = filter.replace(/$/, patternEnd)
-				filter = filter.replace(/^/, patternStart)
-				$.writeln("filter =" + filter);
-	filterREz = RegExp (filter, 'gi')
-					$.writeln("filterRE =" + filterRE);
-				$.writeln("filterREz =" + filterREz);
+				filterRE = RegExp (filter, 'i')
 				if (filter_check.value) {
 					var temp = [];
 					for (i = 0; i < droplist.length; i++) {
 						//if (droplist[i].toLowerCase().indexOf (filter.toLowerCase()) > -1 || droplist[i].slice (0,3) === '---') {
-						if (filterREz.test (droplist[i])) {
+						if (filterRE.test (droplist[i])) {
 							temp.push (droplist[i]);
 						}
 					}
@@ -267,7 +261,6 @@
 	try {
 		var script = get_a_script();
 		var scriptFile = File(script);
-		$.writeln(scriptFile);
 		$.evalFile(scriptFile);
 	} catch (e) {
 		alert (e.message + "\r(line " + e.line + ")");
