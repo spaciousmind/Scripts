@@ -22,7 +22,7 @@ if(app.activeDocument.modified == true){
 var time2 = Number(timeString());
 
 
-alert(Math.round((time2-time1)/1000) +" seconds"  +"\n\n" + "exported: " + "\n" + docName + "_HR.pdf" + "and sent" + "_HR.pdf" + "to printer");)
+alert(Math.round((time2-time1)/1000) +" seconds"  +"\n\n" + "exported: " + "\n" + docName + "_HR.pdf" + " and sent " + "_HR.pdf" + " to printer");
 
 
 
