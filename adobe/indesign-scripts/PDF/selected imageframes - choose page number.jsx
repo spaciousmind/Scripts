@@ -13,6 +13,7 @@ $.writeln("chosenPage =" + chosenPage);
 
 
 for (var i=0; i < mySelection.length; i++){
+$.writeln("--------------")
 
   if (mySelection[i].hasOwnProperty("graphics") && (mySelection[i].graphics.length != 0)) {
     var myFrame = mySelection[i];
@@ -27,12 +28,12 @@ for (var i=0; i < mySelection.length; i++){
 }
 
 function contentSwitch(myFrame, chosenPage){
-  $.writeln("content switch chosenPage =" + chosenPage);
-  $.writeln(myFrame.allGraphics[0].constructor.name)
+  $.writeln("type = " +myFrame.allGraphics[0].constructor.name + " Page = " + chosenPage);
+//  $.writeln(myFrame.allGraphics[0].constructor.name)  //to get type
   switch (myFrame.allGraphics[0].constructor.name) {
   case "PDF":
     currentFile = myFrame.pdfs[0];
-    placeFile (currentFile, chosenPage);
+      placeFile (currentFile, chosenPage);
     break;
   case "ImportedPage":
     currentFile = myFrame.importedPages[0];
@@ -45,14 +46,20 @@ function contentSwitch(myFrame, chosenPage){
 function placeFile(currentFile, chosenPage){
   $.writeln("placeFile chosenPage =" + chosenPage);
 
+inddCropPrefs = app.importedPageAttributes.importedPageCrop;
+pdfCropPrefs = app.pdfPlacePreferences.pdfCrop;
+  $.writeln("pdfCropPrefs = " + pdfCropPrefs);
+  $.writeln("inddCropPrefs = " + inddCropPrefs);
+
+
 
   app.pdfPlacePreferences.pageNumber = chosenPage;
   app.importedPageAttributes.pageNumber = chosenPage;
-  $.writeln("placeFile");
+//  $.writeln("placeFile");
   filePath = currentFile.itemLink.filePath;
-  $.writeln("filePath =" + filePath);
-  $.writeln("myFrame =" + myFrame);
-  $.writeln("currentFile =" + currentFile);
+//  $.writeln("filePath =" + filePath);
+//  $.writeln("myFrame =" + myFrame);
+//  $.writeln("currentFile =" + currentFile);
   try{
     filetoPlace = File(filePath);
     $.writeln("filetoPlace =" + filetoPlace)
