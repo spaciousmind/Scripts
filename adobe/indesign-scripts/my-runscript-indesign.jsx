@@ -6,7 +6,7 @@
 
 	os = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC" : "WINDOWS";
 	if (os == "MAC"){
-		runscript.script_dir = "ENTER FILEPATH FOR MAC HERE";}
+		runscript.script_dir = "~/scripts/adobe/indesign-scripts";;}
 	else{
 		runscript.script_dir = "/e/Projects/Scripts/adobe/indesign-scripts";}
 
