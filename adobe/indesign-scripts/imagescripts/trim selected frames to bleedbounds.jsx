@@ -1,22 +1,24 @@
-$.writeln("========================================");
+//$.writeln("========================================");
+//CLEAN UP ALL THE DEBUG CODE IF THIS WORKS WELL CONSISTANTLY - 07-07-2020
 
 var undoName = "trim selected frames to bleedbounds"
     app.doScript(main, ScriptLanguage.JAVASCRIPT, undefined, UndoModes.FAST_ENTIRE_SCRIPT, undoName);
 
 function main(){
+  var myDoc = app.activeDocument;
   var bleed = app.activeDocument.documentPreferences.documentBleedTopOffset;
   var sel = app.activeDocument.selection;
 
   for (var i=0; i < sel.length; i++){
     var mySelection = app.activeDocument.selection[i];
-    var myPage = mySelection.parentPage.name;
-    var mySpread = mySelection.parentPage.parent.index + 1;
     var pagesLength = app.activeDocument.documentPreferences.pagesPerDocument;
 
-    if (myPage != null){
-      $.writeln("myPage = " + myPage);
-      $.writeln("mySpread = " + mySpread);
-      $.writeln("pagesLength = " + pagesLength);
+    if (mySelection.parentPage != null){
+      var myPage = mySelection.parentPage.name;
+      var mySpread = mySelection.parentPage.parent.index + 1;
+      //$.writeln("myPage = " + myPage);
+      //$.writeln("mySpread = " + mySpread);
+      //$.writeln("pagesLength = " + pagesLength);
 
       var myFrame = {};
       myFrame.topLeftY = mySelection.geometricBounds[0],
@@ -36,6 +38,41 @@ function main(){
       bleedBounds.bottomRightY = pageBounds.bottomRightY + bleed,
       bleedBounds.bottomRightX = pageBounds.bottomRightX + bleed;
 
+
+
+if ((myPage == pagesLength) && (pagesLength % 2 == 0)){
+  var isTheLastPageSingle = "yes";}
+
+if (myPage % 2 == 0){
+  //$.writeln('left page')
+  var pageSide = "left";
+  }
+else{
+  //$.writeln('right page')
+  var pageSide = "right";
+}
+
+if(myDoc.documentPreferences.facingPages && (myPage !=1 && isTheLastPageSingle != "yes")){
+  //$.writeln("ultimate winner");
+  //$.writeln("pageside = " + pageSide);
+  if (pageSide == "left"){
+    //$.writeln("left side test");
+    var bleedBounds = {};
+    bleedBounds.topLeftY = pageBounds.topLeftY - bleed,
+    bleedBounds.topLeftX = pageBounds.topLeftX - bleed,
+    bleedBounds.bottomRightY = pageBounds.bottomRightY + bleed,
+    bleedBounds.bottomRightX = pageBounds.bottomRightX*2 + bleed;
+  }else{
+    //$.writeln("right side test");
+    var bleedBounds = {};
+    bleedBounds.topLeftY = pageBounds.topLeftY - bleed,
+    bleedBounds.topLeftX = pageBounds.topLeftX - pageBounds.topLeftX - bleed,
+    bleedBounds.bottomRightY = pageBounds.bottomRightY + bleed,
+    bleedBounds.bottomRightX = pageBounds.bottomRightX + bleed;
+  }
+
+}
+//else{
       if (myFrame.topLeftY < bleedBounds.topLeftY){
         mySelection.geometricBounds = [bleedBounds.topLeftY, myFrame.topLeftX, myFrame.bottomRightY, myFrame.bottomRightX];
         myFrame.topLeftY = bleedBounds.topLeftY;}
@@ -48,7 +85,7 @@ function main(){
       if (myFrame.bottomRightX > bleedBounds.bottomRightX){
         mySelection.geometricBounds = [myFrame.topLeftY, myFrame.topLeftX, myFrame.bottomRightY, bleedBounds.bottomRightX];
         myFrame.bottomRightX = bleedBounds.bottomRightX;}
-
+//}
       }
     else {
       alert("selection not even on a page");}
@@ -56,13 +93,39 @@ function main(){
 
 //DEBUG CODE
 /*
-$.writeln("myFrame.topLeftY = " + Math.round(myFrame.topLeftY));
-$.writeln("myFrame.topLeftX = " + Math.round(myFrame.topLeftX));
-$.writeln("myFrame.bottomRightY = " + Math.round(myFrame.bottomRightY));
-$.writeln("myFrame.bottomRightX = " + Math.round(myFrame.bottomRightX));
-$.writeln(".");
-$.writeln("bleedBounds.topLeftY = " + Math.round(bleedBounds.topLeftY));
-$.writeln("bleedBounds.topLeftX = " + Math.round(bleedBounds.topLeftX));
-$.writeln("bleedBounds.bottomRightY = " + Math.round(bleedBounds.bottomRightY));
-$.writeln("bleedBounds.bottomRightX = " + Math.round(bleedBounds.bottomRightX));
+//$.writeln("myFrame.topLeftY = " + Math.round(myFrame.topLeftY));
+//$.writeln("myFrame.topLeftX = " + Math.round(myFrame.topLeftX));
+//$.writeln("myFrame.bottomRightY = " + Math.round(myFrame.bottomRightY));
+//$.writeln("myFrame.bottomRightX = " + Math.round(myFrame.bottomRightX));
+//$.writeln(".");
+//$.writeln("bleedBounds.topLeftY = " + Math.round(bleedBounds.topLeftY));
+//$.writeln("bleedBounds.topLeftX = " + Math.round(bleedBounds.topLeftX));
+//$.writeln("bleedBounds.bottomRightY = " + Math.round(bleedBounds.bottomRightY));
+//$.writeln("bleedBounds.bottomRightX = " + Math.round(bleedBounds.bottomRightX));
 */
+
+
+/*
+if(myDoc.documentPreferences.facingPages){
+  //$.writeln("trooooooooo");
+}
+if(myPage !=1){
+  //$.writeln("trooooooooo2");
+}
+if(isTheLastPageSingle != "yes"){
+  //$.writeln("trooooooooo3");
+}
+
+  //$.writeln('you win2')
+
+  if (pagesLength % 2 == 0){
+    //$.writeln('even number')
+    if (myPage == pagesLength){
+      //$.writeln('you are on the last page, and its a single')
+    }
+  }else{
+    //$.writeln('odd number')
+  }
+*/
+
+    //  }
