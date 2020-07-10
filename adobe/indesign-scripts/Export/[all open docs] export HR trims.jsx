@@ -10,7 +10,7 @@ var CurrentPath = myDocument.filePath;
 app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 mySnippet();
-mySnippet2();
+//mySnippet2();
 // mySnippet3();
 
 
