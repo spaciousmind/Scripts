@@ -8,11 +8,12 @@ app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 try{ //check for job folder, if none then set it to current folder
   if (currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1] != null){
     var jobFolder = currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1];
-    $.writeln("true");}}
+//    $.writeln("true");
+}}
 catch(err){
-  $.writeln("false");
+//  $.writeln("false");
   var jobFolder = currentPath;}
-$.writeln("jobFolder = " +jobFolder);
+//$.writeln("jobFolder = " +jobFolder);
 
 
 sendHRProoftoPrinter();  //script to send hr proof to printer
