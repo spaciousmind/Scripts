@@ -1,4 +1,4 @@
-$.writeln("==========================")
+//$.writeln("==========================")
 var undoName = "Choose Page Number of link";
 app.doScript(main, ScriptLanguage.JAVASCRIPT, undefined, UndoModes.FAST_ENTIRE_SCRIPT, undoName);
 
@@ -8,12 +8,12 @@ function main(){
 var mySelection = app.selection;
 var chosenPage = prompt("Choose Page Number:", "1");
 chosenPage = parseInt(chosenPage);
-$.writeln("chosenPage =" + chosenPage);
+//$.writeln("chosenPage =" + chosenPage);
 
 
 
 for (var i=0; i < mySelection.length; i++){
-$.writeln("--------------")
+//$.writeln("--------------")
 
   if (mySelection[i].hasOwnProperty("graphics") && (mySelection[i].graphics.length != 0)) {
     var myFrame = mySelection[i];
@@ -28,7 +28,7 @@ $.writeln("--------------")
 }
 
 function contentSwitch(myFrame, chosenPage){
-  $.writeln("type = " +myFrame.allGraphics[0].constructor.name + " Page = " + chosenPage);
+//  $.writeln("type = " +myFrame.allGraphics[0].constructor.name + " Page = " + chosenPage);
 //  $.writeln(myFrame.allGraphics[0].constructor.name)  //to get type
   switch (myFrame.allGraphics[0].constructor.name) {
   case "PDF":
@@ -44,12 +44,12 @@ function contentSwitch(myFrame, chosenPage){
 }
 
 function placeFile(currentFile, chosenPage){
-  $.writeln("placeFile chosenPage =" + chosenPage);
+//  $.writeln("placeFile chosenPage =" + chosenPage);
 
 inddCropPrefs = app.importedPageAttributes.importedPageCrop;
 pdfCropPrefs = app.pdfPlacePreferences.pdfCrop;
-  $.writeln("pdfCropPrefs = " + pdfCropPrefs);
-  $.writeln("inddCropPrefs = " + inddCropPrefs);
+//  $.writeln("pdfCropPrefs = " + pdfCropPrefs);
+//  $.writeln("inddCropPrefs = " + inddCropPrefs);
 
 
 
@@ -62,7 +62,7 @@ pdfCropPrefs = app.pdfPlacePreferences.pdfCrop;
 //  $.writeln("currentFile =" + currentFile);
   try{
     filetoPlace = File(filePath);
-    $.writeln("filetoPlace =" + filetoPlace)
+//    $.writeln("filetoPlace =" + filetoPlace)
     currentFile.place(filetoPlace, false);
   } catch (e){
     if(currentFile.itemLink.status == LinkStatus.LINK_MISSING || currentFile.itemLink.status == LinkStatus.LINK_INACCESSIBLE){

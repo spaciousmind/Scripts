@@ -1,5 +1,6 @@
 var time1 = Number(timeString());
-
+//currently a bit broken.
+//only made 1 pdf when loaded two docs??? FIX IT
 
 for (var i=0; i < app.documents.length; i++){
 
