@@ -24,8 +24,8 @@ var myDoc = app.activeDocument.name.match();
 
 				for (i = 0; i <= artboardRef.length; i++){
 
-          $.writeln("i = " +i);
-          $.writeln("-----------------z = " +z);
+//          $.writeln("i = " +i);
+//          $.writeln("-----------------z = " +z);
 					//targetFile = getNewName();
 					ext = '.pdf'; // new extension for pdf file
 					newName = "";
