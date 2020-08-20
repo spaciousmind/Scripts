@@ -16,8 +16,8 @@ if (app.documents.length > 0)
                     var msg = "Enter Artboard Margins \n";
                     msg += "\nEnter negative numbers to cancel";
 
- //                   var margins = Number(Window.prompt (msg, 10, "CS4 Shrink Arboard to Fit"));
-                    var margins = 0;                    if (margins>=0)
+                    var margins = Number(Window.prompt (msg, 10, "CS4 Shrink Arboard to Fit"));
+                    if (margins>=0)
                          {
 
                               var activeABindex = idoc.artboards.getActiveArtboardIndex();
@@ -36,7 +36,7 @@ if (app.documents.length > 0)
                               idoc.activeView.zoom = myZoom+.01;
                               idoc.activeView.zoom = myZoom;
 
-                         } 
+                         }
                     else
                          {
                               alert("nos vamos");
