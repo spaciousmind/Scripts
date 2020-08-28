@@ -10,15 +10,16 @@ app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 try{ //check for job folder, if none then set it to current folder
   if (currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1] != null){
     var jobFolder = currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1];
-    $.writeln("true");}}
+ //   $.writeln("true");
+}}
 catch(err){
-  $.writeln("false");
+//  $.writeln("false");
   var jobFolder = currentPath;}
-$.writeln("jobFolder = " +jobFolder);
+//$.writeln("jobFolder = " +jobFolder);
 
 
 
-HRTrimstoPrinter();  //send HR_trims to printer
+HR_trimstoPrinter();  //send HR_trims to printer
 cmykScrProoftoJobFolder();  // export scr proof to job folder
 
 //If the active document has been changed since it was last saved, save it.
