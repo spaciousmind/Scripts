@@ -14,11 +14,10 @@ var currentPath = decodeURI(myDocument.filePath);
 try{ //check for job folder, if none then set it to current folder
   if (currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1] != null){
     var jobFolder = currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1];
-    $.writeln("true");}}
+}}
 catch(err){
-  $.writeln("false");
   var jobFolder = currentPath;}
-$.writeln("jobFolder = " +jobFolder);
+//$.writeln("jobFolder = " +jobFolder);
 
 cmykScrProoftoJobFolder();  // export scr proof to job folder
 
@@ -27,7 +26,7 @@ if(app.activeDocument.modified == true){
 	}
 
 var time2 = Number(timeString());
-alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + "exported: " + docName + "_" + myPageRange + "_scr_proof.pdf");
+alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + "exported: " + docName + "_pg" + myPageRange + "_scr_proof.pdf");
 
 
 //=======================functions========================
@@ -36,7 +35,7 @@ function cmykScrProoftoJobFolder(){
   var myDocument = app.documents.item(0);
 	var myPDFExportPreset = app.pdfExportPresets.item("Screen Proof CMYK");
     app.pdfExportPreferences.pageRange = myPageRange;
-  myDocument.exportFile(ExportFormat.pdfType, File(jobFolder + "/" + docName + "_" + myPageRange + "_scr_proof.pdf"), false, myPDFExportPreset);}
+  myDocument.exportFile(ExportFormat.pdfType, File(jobFolder + "/" + docName + "_pg" + myPageRange + "_scr_proof.pdf"), false, myPDFExportPreset);}
 
 
 function timeString (){

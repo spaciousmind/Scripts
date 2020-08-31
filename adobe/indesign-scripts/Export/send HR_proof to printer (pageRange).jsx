@@ -16,11 +16,11 @@ try{ //check for job folder, if none then set it to current folder
     var jobFolder = currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1];
 }}
 catch(err){
+
   var jobFolder = currentPath;}
 //$.writeln("jobFolder = " +jobFolder);
 
-sendHR_trims();  //script to send hr trims to printer
-exportHR_trims();  // export hr trims to job folder
+sendHRProoftoPrinter();  //script to send hr proof to printer
 
 if(app.activeDocument.modified == true){
 	app.activeDocument.save();
@@ -32,40 +32,19 @@ alert(Math.round((time2-time1)/1000) +" seconds" +"\n\n" + "exported:" + "\n" + 
 
 //=======================functions========================
 //////function to export shitty screen proof to job folder///////////
-function exportShittyScrProof(){
-  var myDocument = app.documents.item(0);
-	var myPDFExportPreset = app.pdfExportPresets.item("shitty screen proof CMYK");
-    app.pdfExportPreferences.pageRange = myPageRange;
-  myDocument.exportFile(ExportFormat.pdfType, File(jobFolder + "/" + docName + "_" + myPageRange + "_LR.pdf"), false, myPDFExportPreset);}
 
-
-function exportHR_trims(){
-	//<fragment>
-    var myDocument = app.documents.item(0);
-	  var myPDFExportPreset = app.pdfExportPresets.item("Inferno Print File 2");
-    app.pdfExportPreferences.pageRange = myPageRange;
-
-    myDocument.exportFile(
-		ExportFormat.pdfType,
-		File(jobFolder + "/" + docName + "_" + myPageRange + "_HR_trims.pdf"),
-		false,
-		myPDFExportPreset
-  );
+//////function to export HR_proof to printer///////////
+function sendHRProoftoPrinter(){
+	var myDocument = app.documents.item(0);
+	var myPDFExportPreset = app.pdfExportPresets.item("Inferno Print File (no bleed)");
+	app.pdfExportPreferences.pageRange = myPageRange;
+	myDocument.exportFile(ExportFormat.pdfType, File(printerPath + "/" + docName + "_pg" + myPageRange + "_nobleed_HR_PROOF.pdf"), false, myPDFExportPreset);
 }
 
-function sendHR_trims(){
-	//<fragment>
-    var myDocument = app.documents.item(0);
-    var myPDFExportPreset = app.pdfExportPresets.item("Inferno Print File 2");
-    app.pdfExportPreferences.pageRange = myPageRange;
 
-    myDocument.exportFile(
-		ExportFormat.pdfType,
-		File(printerPath + "/" + docName + "_" + myPageRange + "_HR_trims.pdf"),
-		false,
-		myPDFExportPreset
-  );
-}
+
+
+ 
 
 function timeString (){
 	var now = new Date();
