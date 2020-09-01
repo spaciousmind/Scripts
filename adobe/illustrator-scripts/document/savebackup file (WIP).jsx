@@ -47,24 +47,23 @@ var jobNumber = currentPath.name.match(/(\d\d\d\d\d)/)[1];
 try{ //check for job folder, if none then set it to current folder
   if (currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1] != null){
     var jobFolder = currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1];
-    $.writeln("true");
 }}
 catch(err){
-  $.writeln("false");
   var jobFolder = currentPath;}
-$.writeln("jobFolder = " +jobFolder);
+//$.writeln("jobFolder = " +jobFolder);
 
 var backupFolder = Folder(currentPath + "/" + jobNumber + " Resources" + "/" + "development" + "/" + "backup");
 if(!backupFolder.exists) backupFolder.create();
 var targetFileBackup = new File (myDoc.filePath + "/" + jobNumber + " Resources" + "/" + "development" + "/" + "backup" + "/" + docName + "_backup" + ".ai");
 
+/*
 $.writeln("currentPath = " + currentPath)
 $.writeln("parentFolder = " + parentFolder)
 $.writeln("jobNumber = " + jobNumber)
 $.writeln("backupFolder = " + decodeURI(backupFolder))
 $.writeln("targetFileBackup = " + targetFileBackup)
 $.writeln("jobFolder = " +  decodeURI(jobFolder))
-
+*/
 
 
 
