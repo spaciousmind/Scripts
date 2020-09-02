@@ -8,12 +8,10 @@ app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
 
 try{ //check for job folder, if none then set it to current folder
   if (currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1] != null){
-    var jobFolder = currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1];
-    $.writeln("true");}}
+    var jobFolder = currentPath.match(/(.*)(\d\d\d\d\d .*$)/)[1];}}
 catch(err){
-  $.writeln("false");
   var jobFolder = currentPath;}
-$.writeln("jobFolder = " +jobFolder);
+//$.writeln("jobFolder = " +jobFolder);
 
 exportShittyScrProof(); //export shitty screen proof to jobFolder
 
