@@ -33,7 +33,7 @@ file name.
 // app.userInteractionLevel = UserInteractionLevel.DONTDISPLAYALERTS;
 
 var destFolder, sourceFolder, files, fileType, sourceDoc, targetFile, pdfSaveOpts;
-$.writeln("--------------------------------")
+//$.writeln("--------------------------------")
 
 
 //=============Find Current Documents path================//
