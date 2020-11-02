@@ -1,1 +1,1 @@
-({location:[84, 207], operation:0, operator:"1", currency:2, format:0, separator:0, thousandsCheck:true, decimals:1, swatchApply:0, cStyle:0})
+({location:[232, 207], operation:2, operator:"1", currency:7, format:0, separator:0, thousandsCheck:false, decimals:0, swatchApply:0, cStyle:13})
