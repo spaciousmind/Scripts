@@ -7,6 +7,6 @@ z=0;
 
 
 for (i = 1; i <= myDocument.pages.length; i++){
-var rect = myDocument.pages.item(z).rectangles.add({strokeColor:'Black', geometricBounds:pageBounds});
+var rect = myDocument.pages.item(z).rectangles.add({fillColor:'None', strokeColor:'Black', geometricBounds:pageBounds});
 z+1;
 }
