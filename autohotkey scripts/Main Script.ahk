@@ -13,7 +13,8 @@ Return ; END OF AUTO-EXECUTE SECTION
 #Include QuickStart.ahk
 
 
-
+#IfWinActive, ahk_class illustrator
+^r::Run, Illustrator.exe E:\Projects\Scripts\adobe\illustrator-scripts\my-runscript-illustrator.jsx
 
 ^!r::
    Reload
