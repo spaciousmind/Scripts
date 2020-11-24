@@ -38,7 +38,7 @@
   while (l--) {
       row = changes[l].parent.parentRow.cells.everyItem();
       if (row !== oldRow){ // only make changes to row if not already changed. Not sure if this makes a difference with InDesign
-          row.height = "6mm";
+          row.height = "5mm";
 
           row.appliedCellStyle = "size cells";
 
