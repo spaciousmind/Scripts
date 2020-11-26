@@ -34,5 +34,6 @@
     while(i--)m[~i]&&
     s.guides.add({location:m[i],
         orientation:1&i?1986359924:1752134266})
+        $.writeln(m);
 
 })(app,'properties',1/0,'active',0,'everyItem');
