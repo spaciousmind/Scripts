@@ -21,7 +21,7 @@ app.displayDialogs = DialogModes.NO
 //=============Find Current Documents path================//
 var CurrentPath = activeDocument.path;
 //=============Establish current documents destination===============//
-var outputFolder = CurrentPath;
+var outputFolder = "/WIP/%C2%BB%20WIP/Superquip/99999_SUPERQUIP_Images%20for%20website/PSD";
 
 
 
@@ -31,7 +31,7 @@ var Blah = prompt("name?", docName)
 
 activeDocument.resizeImage( null, null, 300, ResampleMethod.NONE );
 savePSD();
-saveJPG();
+//saveJPG();
 //activeDocument.close(SaveOptions.DONOTSAVECHANGES)
 
 
@@ -78,7 +78,7 @@ function saveJPG(saveFile, jpegQuality){
 }
 
 //function savePSD(){
-//activeDocument.resizeImage( null, null, 300, ResampleMethod.NONE );
+
 //savePSD();
 //activeDocument.close(SaveOptions.DONOTSAVECHANGES)
 //}
@@ -91,11 +91,13 @@ function savePSD(saveFile){
 
 
   //  psdSaveOptions = new photoshopSaveOptions()
-//    psdSaveOptions.layers = false;
+    psdSaveOptions.layers = false;
 
+activeDocument.resizeImage( null, null, 72, ResampleMethod.NONE );
     activeDocument.saveAs(saveFile, psdSaveOptions, true, Extension.LOWERCASE);
-    activeDocument.close(SaveOptions.DONOTSAVECHANGES)
-    app.open(saveFile)
+activeDocument.close(SaveOptions.DONOTSAVECHANGES)
+ app.open(saveFile)
+ //alert(outputFolder);
 }
 
 
